@@ -1,10 +1,8 @@
-// color:'#C59435'
-
 import React from "react";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 
-import { Navbar, Nav, Row, Container } from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import "../styles/navbar.css";
 
 import logoTop from "../assets/images/logo-no-slogan.png";

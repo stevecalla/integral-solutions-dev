@@ -8,7 +8,7 @@ import { getUserId } from "../utils/getUserId";
 import Employees from "../components/AdminPortal/Employees(Admin)";
 import WorkOrder from "../components/AdminPortal/Schedule";
 import ClientList from "../components/AdminPortal/Clients";
-import AdminMock from "../components/AdminPortal/Schedule";
+import AdminMock from "../pages/Availability";
 
 import { Button, Container, Col, Row } from "react-bootstrap/";
 import "../styles/spinner.css";
