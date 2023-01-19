@@ -6,10 +6,9 @@ import { useQuery } from "@apollo/client";
 import { QUERY_EMPLOYEE_BYID } from "../../utils/queries";
 
 import { Row, Container } from "react-bootstrap";
-import Collapse from "react-bootstrap/Collapse";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getClippingParents } from "@fullcalendar/react";
-import { format_date_MMDDYYYY} from "../../utils/dateFormat"
+import { format_date_MMDDYYYY } from "../../utils/dateFormat";
+import Collapse from "react-bootstrap/Collapse";
 
 function Employees() {
   const [open, setOpen] = useState(false);
@@ -41,7 +40,7 @@ function Employees() {
           past.push(data.employeeById.schedule[i]);
         }
       }
-      console.log(past);
+      
       setSchedule(past);
     },
   });
@@ -50,7 +49,6 @@ function Employees() {
     // console.log(loading); // need to add a spinner
   } else {
     return (
-      <>
         <Container>
           <Row style={{ display: "flex", justifyContent: "center" }}>
             {schedule.map((job, index) => (
@@ -68,9 +66,9 @@ function Employees() {
                         aria-controls={`collapse-text-directions-${index}`}
                         aria-expanded={open}
                       >
-                        {job?.client?.businessName}: {format_date_MMDDYYYY(job?.startDate)} 
-                        at{" "}
-                        {job?.startTime}
+                        {job?.client?.businessName}:{" "}
+                        {format_date_MMDDYYYY(job?.startDate)}
+                        at {job?.startTime}
                       </button>
                     </h5>
                   </div>
@@ -78,7 +76,7 @@ function Employees() {
                   <Collapse in={open}>
                     <div id={`collapse-text-directions-${index}`}>
                       <div id="panel" className="card-body py-1 text-left">
-                      <Row>
+                        <Row>
                           <span
                             style={{ fontWeight: "bold", marginRight: "3px" }}
                           >
@@ -87,16 +85,17 @@ function Employees() {
                           {job?.client?.contact}
                         </Row>
                         <Row>
-                        <a href={`https://www.google.com/maps/dir/?api=1&destination=${job?.streetAddress},${job?.city},${job?.state},${job?.zip}&travelmode=driving`}
-                          target="_blank"
-                          rel="noreferrer">
-
-                          <FontAwesomeIcon
-                            icon="fa-solid fa-location-dot"
-                            style={{ marginTop: "4px", marginRight: "5px" }}
-                          />{" "}
-                          {job?.client?.streetAddress} {job?.client?.city}{" "}
-                          {job?.client?.state} {job?.client?.zip}
+                          <a
+                            href={`https://www.google.com/maps/dir/?api=1&destination=${job?.streetAddress},${job?.city},${job?.state},${job?.zip}&travelmode=driving`}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <FontAwesomeIcon
+                              icon="fa-solid fa-location-dot"
+                              style={{ marginTop: "4px", marginRight: "5px" }}
+                            />{" "}
+                            {job?.client?.streetAddress} {job?.client?.city}{" "}
+                            {job?.client?.state} {job?.client?.zip}
                           </a>
                         </Row>
                         <Row>
@@ -107,10 +106,20 @@ function Employees() {
                         </Row>
                       </div>
                       <div id="panel" className="card-body py-1 text-left">
-                      <span style={{fontWeight:'bold', marginLeft:'-14px'}}>Job Details:</span> {job?.jobDetails}
+                        <span
+                          style={{ fontWeight: "bold", marginLeft: "-14px" }}
+                        >
+                          Job Details:
+                        </span>{" "}
+                        {job?.jobDetails}
                       </div>
                       <div id="panel" className="card-body py-1 text-left">
-                        <span style={{fontWeight:'bold', marginLeft:'-14px'}}>Client Employees: </span>{job?.numberOfClientEmployees}
+                        <span
+                          style={{ fontWeight: "bold", marginLeft: "-14px" }}
+                        >
+                          Client Employees:{" "}
+                        </span>
+                        {job?.numberOfClientEmployees}
                       </div>
                     </div>
                   </Collapse>
@@ -119,7 +128,6 @@ function Employees() {
             ))}
           </Row>
         </Container>
-      </>
     );
   }
 }
