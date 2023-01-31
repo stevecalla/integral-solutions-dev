@@ -31,9 +31,7 @@ function ContactForm() {
   const [squareFeet, setSquareFeet] = useState("");
   const [employeeNumber, setEmployeeNumber] = useState("");
   const [startDate, setStartDate] = useState("");
-  const [services, setServices] = useState([]);
   const [jobDetails, setJobDetails] = useState("");
-  // const [maskedPhone, setMaskedPhone] = useState("");
 
   //  validation
   const [showCompanyNameValidation, setShowCompanyNameValidation] =
@@ -55,25 +53,46 @@ function ContactForm() {
   const [areAllFieldsFilled, setAreAllFieldsFilled] = useState(true);
 
   //section handle input
+
+  const [services, setServices] = useState([]);
+  const [serviceList, setServiceList] = useState({
+    delivery: false,
+    install: false,
+    clean: false,
+    moving: false,
+    econfig: false,
+  });
+
   const handleInputChange = (event) => {
+    const { name, value, checked } = event.target;
+    let selectedService = event.target.getAttribute("data-service");
 
-    const { name, value } = event.target;
+    handleCheckbox(name, value, checked, selectedService);
 
-  
+    handleOtherInputs(name, value);
+  };
 
-    // set state for check box input
+  //handle checkbox input
+  const handleCheckbox = (name, value, checked, selectedService) => {
     // if checkbox is checked and services state does not include value then add to services
-    if (event.target.checked && !services.includes(value.trim())) {
-      setServices([...services, ` ${value}`]); // add space to the value for email formatting
+    if (checked && !services.includes(value.trim())) {
+      setServices([...services, ` ${value}`]); // set service selected list to include checked services; extra space for email format
+      setServiceList({ ...serviceList, [selectedService]: true }); //set state for checked to true; this is necessary to reset form
+
       return;
       // if target is unchecked and it is a services input then don't include in services state
-    } else if (!event.target.checked && name === "services") {
+    } else if (!checked && name === "services") {
       setServices(
         services.filter((service) => value.trim() !== service.trim())
       );
+      setServiceList({ ...serviceList, [selectedService]: false }); //this is necessary to reset form
+
       return;
     }
+  };
 
+  //handle inputs that are not checkboxes
+  const handleOtherInputs = (name, value) => {
     //set state for all other inputs
     if (name === "companyName") {
       setCompanyName(value);
@@ -112,9 +131,7 @@ function ContactForm() {
 
   //section handle submit
   const handleSubmit = (event) => {
-    
     event.preventDefault();
-
 
     if (!companyName || !contactName || !email || !startDate || !jobDetails) {
       setErrorMessage("Please fill in all required fields *");
@@ -176,6 +193,15 @@ function ContactForm() {
     setStartDate("");
     setJobDetails("");
     setServices([]);
+
+    //reset all services checkboxes to unchecked
+    setServiceList({
+      delivery: false,
+      install: false,
+      clean: false,
+      moving: false,
+      econfig: false,
+    });
   };
 
   // VALIDATION BLUR
@@ -514,7 +540,7 @@ function ContactForm() {
                     justifyContent: "center",
                   }}
                 >
-                  # of Employees
+                  Staff Size
                 </Form.Label>
                 <Form.Label
                   className={`text-danger ${
@@ -598,6 +624,8 @@ function ContactForm() {
                     id={`inline-${type}-1`}
                     onChange={handleInputChange}
                     onBlur={handleBlurChange}
+                    data-service="delivery"
+                    checked={serviceList.delivery}
                   />
                   <Form.Check
                     style={{ width: "250px" }}
@@ -607,6 +635,8 @@ function ContactForm() {
                     type={type}
                     id={`inline-${type}-1`}
                     onChange={handleInputChange}
+                    data-service="install"
+                    checked={serviceList.install}
                   />
                   <Form.Check
                     style={{ width: "250px" }}
@@ -616,6 +646,8 @@ function ContactForm() {
                     type={type}
                     id={`inline-${type}-4`}
                     onChange={handleInputChange}
+                    data-service="clean"
+                    checked={serviceList.clean}
                   />
                   <Form.Check
                     style={{ width: "250px" }}
@@ -625,6 +657,8 @@ function ContactForm() {
                     type={type}
                     id={`inline-${type}-2`}
                     onChange={handleInputChange}
+                    data-service="moving"
+                    checked={serviceList.moving}
                   />
                   <Form.Check
                     style={{ width: "250px" }}
@@ -634,6 +668,8 @@ function ContactForm() {
                     type={type}
                     id={`inline-${type}-3`}
                     onChange={handleInputChange}
+                    data-service="reconfig"
+                    checked={serviceList.reconfig}
                   />
                 </div>
               ))}

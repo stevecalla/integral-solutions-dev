@@ -85,6 +85,7 @@ function ScheduleAdd() {
     data: schedule,
     // eslint-disable-next-line
     error: scheduleError,
+    // eslint-disable-next-line
     refetch: scheduleRefetch,
   } = useQuery(QUERY_SCHEDULE, {
     variables: {
