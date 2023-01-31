@@ -20,7 +20,6 @@ import EmployeePortal from "./pages/EmployeePortal";
 
 import ForgotPassword from "./components/ResetPassword/ForgotPassword";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
-import HoursMock from "./pages/HoursMock";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -106,9 +105,8 @@ function App() {
             <Navbar />
             <Routes>
               <Route exact path="/" element={<Home />} />
-              <Route exact path="/home" element={<Home />} />
-              <Route exact path="/shoplinks" element={<ShopLinks />} />
-              <Route exact path="/contact" element={<ContactUs />} />
+              <Route exact path="/shop-links" element={<ShopLinks />} />
+              <Route exact path="/contact-us" element={<ContactUs />} />
 
               <Route
                 exact
@@ -116,7 +114,6 @@ function App() {
                 element={
                   <Login
                     renderPanel={"login"}
-                    // messageButtonIsActive={false}
                     loginButtonIsActive={true}
                   />
                 }
@@ -130,7 +127,6 @@ function App() {
               <Route
                 exact
                 path="/resetpassword/:token"
-                
                 element={<ResetPassword />}
               
               />
@@ -148,8 +144,6 @@ function App() {
             <Navbar />
             <Routes>
               <Route exact path="/" element={<Home />} />
-              <Route exact path="/home" element={<Home />} />
-         
               <Route
                 exact
                 path="/login"
@@ -161,8 +155,6 @@ function App() {
                   />
                 }
               />
-           
-
               {Auth.isAdmin() && !Auth.isLocked() && (
                 <Route
                   exact
@@ -182,7 +174,7 @@ function App() {
               {Auth.isAdmin() && !Auth.isLocked() && (
                 <Route
                   exact
-                  path="/work-order"
+                  path="/jobs-panel"
                   element={
                     <AdminPortal
                       renderPanel={"workorder"}
@@ -198,7 +190,7 @@ function App() {
               {Auth.isAdmin() && !Auth.isLocked() && (
                 <Route
                   exact
-                  path="/employees"
+                  path="/employees-panel"
                   element={
                     <AdminPortal
                       renderPanel={"employees"}
@@ -211,11 +203,10 @@ function App() {
                   }
                 />
               )}
-            
               {Auth.isAdmin() && !Auth.isLocked() && (
                 <Route
                   exact
-                  path="/clientlist"
+                  path="/client-panel"
                   element={
                     <AdminPortal
                       renderPanel={"clientlist"}
@@ -230,18 +221,14 @@ function App() {
               {Auth.isLocked() === false && (
                 <Route
                   exact
-                  path="/employee"
+                  path="/upcoming-jobs"
                   element={
                     <EmployeePortal
                       renderPanel={"employee"}
                       pastOrFuture={"future"}
-                      calendarButtonIsActive={true}
-                      addemployeeButtonIsActive={true}
-                      clientlistButtonIsActive={false}
-                      workOrderButtonIsActive={false}
-                      employeeListButtonIsActive={false}
-                      clientListButtonIsActive={false}
-                      adminMockButtonIsActive={false}
+                      upcomingJobsButtonIsActive={true}
+                      pastJobsButtonIsActive={false}
+                      hoursButtonIsActive={false}
                     />
                   }
                 />
@@ -249,79 +236,34 @@ function App() {
               {Auth.isLocked() === false && (
                 <Route
                   exact
-                  path="/past"
+                  path="/past-jobs"
                   element={
                     <EmployeePortal
                       renderPanel={"past"}
                       pastOrFuture={"past"}
-                      calendarButtonIsActive={false}
-                      addemployeeButtonIsActive={false}
-                      clientlistButtonIsActive={true}
-                      workOrderButtonIsActive={false}
-                      employeeListButtonIsActive={false}
-                      clientListButtonIsActive={false}
-                      adminMockButtonIsActive={false}
-                    />
-                  }
-                />
-              )}
-              {Auth.isLocked() === false && (
-                <Route
-                  exact
-                  path="/hoursadmin"
-                  element={
-                    <HoursMock
-                      renderPanel={"hoursadmin"}
-                      calendarButtonIsActive={false}
-                      hoursAdminButtonIsActive={true}
-                      addemployeeButtonIsActive={false}
-                      clientlistButtonIsActive={false}
-                      workOrderButtonIsActive={false}
-                      employeeListButtonIsActive={false}
-                      clientListButtonIsActive={false}
-                      adminMockButtonIsActive={false}
-                    />
-                  }
-                />
-              )}
-              {Auth.isLocked() === false && (
-                <Route
-                  exact
-                  path="/hours-mock"
-                  element={
-                    <HoursMock
-                      renderPanel={"hoursmock"}
+                      upcomingJobsButtonIsActive={false}
+                      pastJobsButtonIsActive={true}
                       hoursButtonIsActive={false}
-                      hoursAdminButtonIsActive={false}
-                      hoursMockButtonIsActive={true}
                     />
                   }
                 />
               )}
-
               {Auth.isLocked() === false && (
                 <Route
                   exact
-                  path="/hours"
+                  path="/employee-hours"
                   element={
-                    <HoursMock
+                    <EmployeePortal
                       renderPanel={"hours"}
+                      upcomingJobsButtonIsActive={false}
+                      pastJobsButtonIsActive={false}
                       hoursButtonIsActive={true}
-                      calendarButtonIsActive={false}
-                      addemployeeButtonIsActive={false}
-                      clientlistButtonIsActive={false}
-                      workOrderButtonIsActive={false}
-                      employeeListButtonIsActive={false}
-                      clientListButtonIsActive={false}
-                      adminMockButtonIsActive={false}
-                      hoursAdminButtonIsActive={false}
                     />
                   }
                 />
               )}
-
-              <Route exact path="/contact" element={<ContactUs />} />
-              <Route exact path="/shoplinks" element={<ShopLinks />} />
+              <Route exact path="/contact-us" element={<ContactUs />} />
+              <Route exact path="/shop-links" element={<ShopLinks />} />
               <Route path="*" element={<WrongPage />} />
             </Routes>
           </>

@@ -36,7 +36,7 @@ const AdminPortal = ({
                 style={workOrderButtonIsActive ? isActive : notActive}
                 active={workOrderButtonIsActive}
                 onClick={() => {
-                  navigate("/work-order");
+                  navigate("/jobs-panel");
                 }}
               >
                 Jobs
@@ -47,7 +47,7 @@ const AdminPortal = ({
                 style={employeeListButtonIsActive ? isActive : notActive}
                 active={employeeListButtonIsActive}
                 onClick={() => {
-                  navigate("/employees");
+                  navigate("/employees-panel");
                 }}
               >
                 Employees
@@ -57,7 +57,7 @@ const AdminPortal = ({
                 style={clientListButtonIsActive ? isActive : notActive}
                 active={clientListButtonIsActive}
                 onClick={() => {
-                  navigate("/clientlist");
+                  navigate("/client-panel");
                 }}
               >
                 Clients

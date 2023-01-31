@@ -18,10 +18,10 @@ function Footer() {
           </section>
 
           <section className="footer-nav-menu">
-            <Nav.Link className="menu-text" as={Link} to="/shoplinks">
+            <Nav.Link className="menu-text" as={Link} to="/shop-links">
               Shop Furniture
             </Nav.Link>
-            <Nav.Link className="menu-text" as={Link} to="/contact">
+            <Nav.Link className="menu-text" as={Link} to="/contact-us">
               Contact Us{" "}
             </Nav.Link>
             <Nav.Link className="menu-text" as={Link} to="/login">

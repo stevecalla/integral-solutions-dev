@@ -45,7 +45,7 @@ const Home = () => {
             }}
             className="contact-btn"
             onClick={() => {
-              navigate("/contact");
+              navigate("/contact-us");
             }}
           >
             Contact Us

@@ -99,6 +99,11 @@ function EmployeeHours() {
     },
   });
 
+  useEffect(() => {
+    console.log(singleHours)
+  }, [singleHours])
+  
+
   //mutation to update the hours collection with newly created hour records
   const [updateHours] = useMutation(UPDATE_HOURS_BYEMPLOYEEID_BYJOBDATE, {
     // if skip is true, this query will not be executed; in this instance, if the user is not logged in this query will be skipped when the component mounts
