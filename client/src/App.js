@@ -10,14 +10,14 @@ import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
-import AdminPortal from "./pages/AdminPortal";
-import ContactUs from "./pages/ContactForm";
 import ShopLinks from "./pages/ShopLinks";
-import WrongPage from "./pages/WrongPage";
+import ContactUs from "./pages/ContactForm";
 import Login from "./pages/Login";
+import AdminPortal from "./pages/AdminPortal";
 import EmployeePortal from "./pages/EmployeePortal";
+import WrongPage from "./pages/WrongPage";
 
+import Navbar from "./components/Navbar";
 import ForgotPassword from "./components/ResetPassword/ForgotPassword";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 

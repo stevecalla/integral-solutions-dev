@@ -201,7 +201,7 @@ function EmployeeHours() {
     //assign hours to innertext for element submitted/selected
     for (let i = 0; i < hoursInput.length; i++) {
       if (hoursInput[i].id === event.currentTarget.id && hoursInput[i] > 0) {
-        hoursInput[i].innerText = `Hours: ${hours}`;
+        hoursInput[i].innerText = `Hours: ${parseFloat(hours).toFixed(2)}`;
       }
     }
 
@@ -477,19 +477,19 @@ function EmployeeHours() {
     let hoursInput = document.querySelectorAll(".hourInput"); //get array of hoursInput elements
     for (let i = 0; i < hoursInput.length; i++) {
       if (endTimeElements[i].name === "endTimeSunday") {
-        hoursInput[i].innerText = `Hours: ${sunday.hours}`;
+        hoursInput[i].innerText = `Hours: ${parseFloat(sunday.hours).toFixed(2)}`;
       } else if (endTimeElements[i].name === "endTimeMonday") {
-        hoursInput[i].innerText = `Hours: ${monday.hours}`;
+        hoursInput[i].innerText = `Hours: ${parseFloat(monday.hours).toFixed(2)}`;
       } else if (endTimeElements[i].name === "endTimeTuesday") {
-        hoursInput[i].innerText = `Hours: ${tuesday.hours}`;
+        hoursInput[i].innerText = `Hours: ${parseFloat(tuesday.hours).toFixed(2)}`;
       } else if (endTimeElements[i].name === "endTimeWednesday") {
-        hoursInput[i].innerText = `Hours: ${wednesday.hours}`;
+        hoursInput[i].innerText = `Hours: ${parseFloat(wednesday.hours).toFixed(2)}`;
       } else if (endTimeElements[i].name === "endTimeThursday") {
-        hoursInput[i].innerText = `Hours: ${thursday.hours}`;
+        hoursInput[i].innerText = `Hours: ${parseFloat(thursday.hours).toFixed(2)}`;
       } else if (endTimeElements[i].name === "endTimeFriday") {
-        hoursInput[i].innerText = `Hours: ${friday.hours}`;
+        hoursInput[i].innerText = `Hours: ${parseFloat(friday.hours).toFixed(2)}`;
       } else if (endTimeElements[i].name === "endTimeSaturday") {
-        hoursInput[i].innerText = `Hours: ${saturday.hours}`;
+        hoursInput[i].innerText = `Hours: ${parseFloat(saturday.hours).toFixed(2)}`;
       }
     }
 
