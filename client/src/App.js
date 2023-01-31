@@ -107,7 +107,6 @@ function App() {
               <Route exact path="/" element={<Home />} />
               <Route exact path="/shop-links" element={<ShopLinks />} />
               <Route exact path="/contact-us" element={<ContactUs />} />
-
               <Route
                 exact
                 path="/login"
@@ -118,7 +117,6 @@ function App() {
                   />
                 }
               />
-          
               <Route
                 exact
                 path="/forgotpassword"
@@ -158,31 +156,13 @@ function App() {
               {Auth.isAdmin() && !Auth.isLocked() && (
                 <Route
                   exact
-                  path="/calendar"
-                  element={
-                    <AdminPortal
-                      renderPanel={"calendar"}
-                      calendarButtonIsActive={true}
-                      workOrderButtonIsActive={false}
-                      employeeListButtonIsActive={false}
-                      clientListButtonIsActive={false}
-                      adminMockButtonIsActive={false}
-                    />
-                  }
-                />
-              )}
-              {Auth.isAdmin() && !Auth.isLocked() && (
-                <Route
-                  exact
                   path="/jobs-panel"
                   element={
                     <AdminPortal
                       renderPanel={"workorder"}
-                      calendarButtonIsActive={false}
                       workOrderButtonIsActive={true}
                       employeeListButtonIsActive={false}
                       clientListButtonIsActive={false}
-                      adminMockButtonIsActive={false}
                     />
                   }
                 />
@@ -194,11 +174,9 @@ function App() {
                   element={
                     <AdminPortal
                       renderPanel={"employees"}
-                      calendarButtonIsActive={false}
                       workOrderButtonIsActive={false}
                       employeeListButtonIsActive={true}
                       clientListButtonIsActive={false}
-                      adminMockButtonIsActive={false}
                     />
                   }
                 />
@@ -210,7 +188,6 @@ function App() {
                   element={
                     <AdminPortal
                       renderPanel={"clientlist"}
-                      calendarButtonIsActive={false}
                       workOrderButtonIsActive={false}
                       employeeListButtonIsActive={false}
                       clientListButtonIsActive={true}
