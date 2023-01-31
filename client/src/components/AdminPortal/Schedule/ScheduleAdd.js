@@ -627,7 +627,8 @@ function ScheduleAdd() {
                 type="date"
                 min={new Date().toISOString().split("T")[0]}
                 name="startDate"
-                defaultValue={client?.startDate}
+                // value={client?.startDate}
+                value={startDate}
                 onChange={handleInputChange}
                 onBlur={handleBlurChange}
               />
