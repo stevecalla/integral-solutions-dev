@@ -32,6 +32,14 @@ function ContactForm() {
   const [employeeNumber, setEmployeeNumber] = useState("");
   const [startDate, setStartDate] = useState("");
   const [jobDetails, setJobDetails] = useState("");
+  const [services, setServices] = useState([]);
+  const [serviceList, setServiceList] = useState({
+    delivery: false,
+    install: false,
+    clean: false,
+    moving: false,
+    econfig: false,
+  });
 
   //  validation
   const [showCompanyNameValidation, setShowCompanyNameValidation] =
@@ -53,16 +61,6 @@ function ContactForm() {
   const [areAllFieldsFilled, setAreAllFieldsFilled] = useState(true);
 
   //section handle input
-
-  const [services, setServices] = useState([]);
-  const [serviceList, setServiceList] = useState({
-    delivery: false,
-    install: false,
-    clean: false,
-    moving: false,
-    econfig: false,
-  });
-
   const handleInputChange = (event) => {
     const { name, value, checked } = event.target;
     let selectedService = event.target.getAttribute("data-service");
