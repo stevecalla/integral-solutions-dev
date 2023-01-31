@@ -183,7 +183,7 @@ function EmployeeHours() {
       hours = friday.hours;
     } else if (daySubmitted === "Saturday" && saturday.hours >= 0) {
       hours = saturday.hours;
-    } else {
+    } else { // this alert doesn't function because of the >= above; alert is in the calcHours function serving as an warning and setting hours a 0 if negative.
       alert("Please Ensure End Time is Greater Than or the Same as the Start Time.");
       return;
     }
@@ -286,10 +286,13 @@ function EmployeeHours() {
     const duration = moment.duration(calcEnd.diff(calcStart));
     const hours = parseInt(duration.asMinutes()) / 60;
 
-    //ensure
+    //ensure hours greater than or equal to 0
     if (hours < 0) {
+      alert("Please Ensure End Time is Greater Than or the Same as the Start Time.");
       return 0;
-    }
+      //fix add alert here...
+    };
+
     const hoursWorked = hours.toFixed(2);
 
     return hoursWorked;
