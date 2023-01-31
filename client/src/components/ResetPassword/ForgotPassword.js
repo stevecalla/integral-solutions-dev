@@ -153,7 +153,7 @@ function Employees() {
               <MaskedInput
                 className="form-control"
                 mask={emailMask}
-                placeholder="Client email"
+                placeholder="Employee email"
                 guide={true}
                 name="email"
                 value={userFormData.email.toLowerCase()}
