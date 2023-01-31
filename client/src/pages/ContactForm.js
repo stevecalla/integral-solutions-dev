@@ -67,7 +67,9 @@ function ContactForm() {
 
     handleCheckbox(name, value, checked, selectedService);
 
-    handleOtherInputs(name, value);
+    if (!checked & name !== "services") {
+      handleOtherInputs(name, value);
+    };
   };
 
   //handle checkbox input
