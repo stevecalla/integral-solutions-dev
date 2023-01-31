@@ -540,7 +540,7 @@ function ContactForm() {
                     justifyContent: "center",
                   }}
                 >
-                  # of Employees
+                  Staff Size
                 </Form.Label>
                 <Form.Label
                   className={`text-danger ${
