@@ -173,7 +173,6 @@ function ScheduleAdd() {
   const handleAddScheduleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log("handle submit = ", businessName);
     setBusinessName(businessName);
 
     let reformattedStartDate = format_date_string(startDate, startTime);
@@ -203,7 +202,6 @@ function ScheduleAdd() {
         },
       });
 
-      console.log("new job = ", data);
     } catch (err) {
       console.error(err);
     }
@@ -216,31 +214,10 @@ function ScheduleAdd() {
 
   //section update client array of jobs/schedule
   useEffect(() => {
-    //fix
-    console.log("client = ");
-    console.log(clients);
-    console.log("businessName = ", businessName);
-    console.log("selected businessName = ", selectedBusinessName);
-    console.log(
-      clients?.clients
-        ?.filter((client) => client?.businessName === businessName)
-        .map((id) => id?._id)
-        .toString()
-    );
-    console.log("schedule id = ", mostRecentScheduleAddId);
 
     try {
       if (mostRecentScheduleAddId && selectedBusinessName) {
-        console.log(
-          "inside try block = ",
-          "business name = ",
-          businessName,
-          selectedBusinessName,
-          mostRecentScheduleAddId,
-          clients
-        );
-
-        // eslint-disable-next-line
+        
         updateClientSchedule({
           variables: {
             id: clients?.clients

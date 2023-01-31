@@ -23,15 +23,8 @@ function useEmailSend(props) {
 
   const tiny_url = async () => {
     getTinyURL(props.token)
-      // .then((data) => console.log(data.data.tiny_url))
       .then((data) => {setTinyURI(data.data.tiny_url)})
-
-    console.log("tinyuri = ", tinyURI);
   };
-
-  useEffect(() => {
-    console.log('useeffect ', tinyURI)
-  }, [tinyURI])
   
   // SECTION SET EMAIL CONTENT
   const toEmail =
@@ -70,13 +63,6 @@ function useEmailSend(props) {
 
   // SECTION USE EFFECT TO RUN SENDEMAIL IF TOKEN IS POPULATED (since this hook will run on every render for this component)
   useEffect(() => {
-    // console.log('use effect = ', props, props.token, !props.token, Object.keys(props).length !== 0  )
-
-    // console.log('length = ', Object.keys(props).length !== 0)
-    // console.log('props = ', Object.keys(props));
-    // console.log('props = ', props)
-    // console.log('source = ', props.source);
-    // console.log('token = ', props.token?.token);
 
     if (props?.token?.token || props?.companyName) {
       // get tiny url
