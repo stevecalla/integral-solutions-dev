@@ -42,12 +42,19 @@ function ScheduleAdd() {
   const [numberOfClientEmployees, setNumberOfClientEmployees] = useState("");
   const [client, setClient] = useState("");
   const [selectedEmployees, setSelectedEmployees] = useState([]);
+  const [selectedBusinessName, setSelectedBusinessName] = useState(""); //used to main businessName state, while businessName is adjusted to match the select box
   const [areAllFieldsFilled, setAreAllFieldsFilled] = useState(true);
 
   //SECTION SET STATE FOR THE SELECTED BUSINESS/CLIENT NAME DROPDOWN
-  function businessNameSelect(e) {
-    setBusinessName(e.target.value);
+  function businessNameSelect(event) {
+    setBusinessName(event.target.value); //used to manage the state of the business name / client drop down box
+    setSelectedBusinessName(event.target.value); //used to add the selected business to the employee and clietn model
   }
+
+  //fix
+  // useEffect(() => {
+  //   console.log("useffect business name = ", businessName);
+  // }, [businessName]);
 
   // VALIDATION
   const [showBusinessNameValidation, setShowBusinessNameValidation] =
@@ -116,12 +123,25 @@ function ScheduleAdd() {
   });
 
   // add schedule
+
+  const [mostRecentScheduleAddId, setMostRecentScheduleAddId] = useState(); //fix
+
   const [addSchedule] = useMutation(ADD_SCHEDULE, {
+    onCompleted: (data) => {
+      //fix
+      // console.log("add schedule = ", data);
+      setMostRecentScheduleAddId(data?.addSchedule?._id);
+      // console.log("most recent id = ", mostRecentScheduleAddId);
+    },
     refetchQueries: [
       { query: QUERY_SCHEDULE }, // DocumentNode object parsed with gql
       "getSchedule", // Query name
     ],
   });
+
+  // useEffect(() => {
+  //   console.log(mostRecentScheduleAddId);
+  // }, [mostRecentScheduleAddId]);
 
   // add new schedule / job to the appropriate client
   const [updateClientSchedule] = useMutation(UPDATE_CLIENT_SCHEDULE);
@@ -195,6 +215,9 @@ function ScheduleAdd() {
   const handleAddScheduleSubmit = async (event) => {
     event.preventDefault();
 
+    console.log("handle submit = ", businessName);
+    setBusinessName(businessName);
+
     let reformattedStartDate = format_date_string(startDate, startTime);
     let reformattedEndDate = format_date_string(endDate, startTime); //used start time since endTime is no on the form
 
@@ -204,7 +227,6 @@ function ScheduleAdd() {
         variables: {
           businessName,
           streetAddress,
-          // suite,
           city,
           state,
           zip,
@@ -216,63 +238,132 @@ function ScheduleAdd() {
           jobDetails,
           numberOfClientEmployees,
           client: clients?.clients
-            ?.filter((client) => client.businessName === businessName)
+            ?.filter((client) => client.businessName === selectedBusinessName)
             .map((id) => id._id)
-            .toString(), // convert client name to client._id
+            .toString(), // convert selecteded busines name to client._id that is added to the schedule/job object
           employees: selectedEmployees.map(({ employeeId }) => employeeId),
         },
       });
+
+      console.log("new job = ", data);
     } catch (err) {
       console.error(err);
     }
 
+    // fix
     // refetch the list of schedules/jobs to get the most recent id added
-    let getScheduleIds = await scheduleRefetch();
-    let scheduleIdsLength = getScheduleIds.data.schedules.length - 1;
-    let mostRecentScheduleId =
-      getScheduleIds.data.schedules[scheduleIdsLength]._id;
+    // let getScheduleIds = await scheduleRefetch();
+    // let scheduleIdsLength = getScheduleIds.data.schedules.length - 1;
+    // let mostRecentScheduleId =
+    //   getScheduleIds.data.schedules[scheduleIdsLength]._id;
 
-    updateClientJobs(mostRecentScheduleId);
-    updateEmployeeJobs(mostRecentScheduleId);
+    // updateClientJobs(mostRecentScheduleId);
+    // updateEmployeeJobs(mostRecentScheduleId);
 
     !areAllFieldsFilled ? setShowSuccess(true) : setShowSuccess(false);
     resetForm();
   };
 
-  // update client schedule array
-  const updateClientJobs = async (mostRecentScheduleId) => {
-    try {
-      // eslint-disable-next-line
-      const { data } = await updateClientSchedule({
-        variables: {
-          id: clients?.clients
-            ?.filter((client) => client.businessName === businessName)
-            .map((id) => id._id)
-            .toString(), // convert client name to client._id
-          schedule: mostRecentScheduleId,
-        },
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  //section update client array of jobs/schedule
+  useEffect(() => {
+    //fix
+    console.log("client = ");
+    console.log(clients);
+    console.log("businessName = ", businessName);
+    console.log("selected businessName = ", selectedBusinessName);
+    console.log(
+      clients?.clients
+        ?.filter((client) => client?.businessName === businessName)
+        .map((id) => id?._id)
+        .toString()
+    );
+    console.log('schedule id = ', mostRecentScheduleAddId);
 
-  // update employee schedule array
-  const updateEmployeeJobs = async (mostRecentScheduleId) => {
     try {
-      for (let i = 0; i < selectedEmployees.length; i++) {
+      if (mostRecentScheduleAddId && selectedBusinessName) {
+        console.log(
+          "inside try block = ",
+          "business name = ",
+          businessName,
+          selectedBusinessName,
+          mostRecentScheduleAddId,
+          clients
+        );
+
         // eslint-disable-next-line
-        const { data } = await updateEmployeeSchedule({
+        updateClientSchedule({
           variables: {
-            id: selectedEmployees[i].employeeId,
-            schedule: mostRecentScheduleId,
+            id: clients?.clients
+              ?.filter((client) => client?.businessName === selectedBusinessName)
+              .map((id) => id?._id)
+              .toString(), // convert client name to client._id
+            schedule: mostRecentScheduleAddId,
           },
         });
       }
     } catch (err) {
       console.error(err);
     }
-  };
+    // eslint-disable-next-line
+  }, [mostRecentScheduleAddId, selectedBusinessName]);
+
+  //section update employee array of jobs/schedule
+  useEffect(() => {
+    try {
+      if (mostRecentScheduleAddId) {
+        //for each selected employee
+        for (let i = 0; i < selectedEmployees.length; i++) {
+          // eslint-disable-next-line
+          updateEmployeeSchedule({
+            variables: {
+              id: selectedEmployees[i].employeeId,
+              schedule: mostRecentScheduleAddId,
+            },
+          });
+        }
+      }
+    } catch (err) {
+      console.error(err);
+    }
+    // eslint-disable-next-line
+  }, [mostRecentScheduleAddId]);
+
+  // // //fix
+  // // // update client schedule array
+  // // const updateClientJobs = async (mostRecentScheduleId) => {
+  // //   try {
+  // //     // eslint-disable-next-line
+  // //     const { data } = await updateClientSchedule({
+  // //       variables: {
+  // //         id: clients?.clients
+  // //           ?.filter((client) => client.businessName === businessName)
+  // //           .map((id) => id._id)
+  // //           .toString(), // convert client name to client._id
+  // //         schedule: mostRecentScheduleId,
+  // //       },
+  // //     });
+  // //   } catch (err) {
+  // //     console.error(err);
+  // //   }
+  // // };
+
+  // //fix
+  // // update employee schedule array
+  // const updateEmployeeJobs = async (mostRecentScheduleId) => {
+  //   try {
+  //     for (let i = 0; i < selectedEmployees.length; i++) {
+  //       // eslint-disable-next-line
+  //       const { data } = await updateEmployeeSchedule({
+  //         variables: {
+  //           id: selectedEmployees[i].employeeId,
+  //           schedule: mostRecentScheduleId,
+  //         },
+  //       });
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   // SECTION UTILITY FUNCTIONS
   // If user clicks off an input field without entering text, then validation message "is required" displays
@@ -558,7 +649,7 @@ function ScheduleAdd() {
               <Form.Control
                 className="custom-border"
                 type="date"
-                min={startDate}
+                min={startDate ? startDate : new Date().toISOString().split("T")[0]}
                 name="endDate"
                 value={endDate}
                 onChange={handleInputChange}

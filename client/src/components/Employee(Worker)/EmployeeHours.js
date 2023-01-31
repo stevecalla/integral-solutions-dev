@@ -245,25 +245,24 @@ function EmployeeHours() {
 
   //SECTION update the employee array with the id for hour added
   useEffect(() => {
-    console.log("useeffect = ", mostRecentHourUpdateId);
+    // console.log("useeffect = ", mostRecentHourUpdateId);
 
     //use the mostRecentHourUpdateId & add it to the employee array
     try {
       if (mostRecentHourUpdateId) {
         // eslint-disable-next-line
-        const { data } = updateEmployeeHour({
+        updateEmployeeHour({
           variables: {
             id: userId, //curent user id
             hour: mostRecentHourUpdateId, //id of the most recently updated hour
           },
         });
-        console.log("what data = ", data);
       }
     } catch (err) {
       console.error(err);
     }
 
-    // eslint-disable-next-line
+  // eslint-disable-next-line
   }, [mostRecentHourUpdateId]);
 
   //section utility functions

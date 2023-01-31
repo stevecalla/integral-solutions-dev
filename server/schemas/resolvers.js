@@ -442,7 +442,8 @@ const resolvers = {
       context
     ) => {
       // if (context.user) {
-      console.log("resolve add employee = ", 
+      console.log(
+        "resolve add employee = ",
         email,
         password,
         firstName,
@@ -452,7 +453,7 @@ const resolvers = {
         isLocked,
         isDisplayable,
         hasDriversLicense
-      )
+      );
       const employee = await Employee.create({
         email,
         password,
@@ -665,9 +666,8 @@ const resolvers = {
       },
       context
     ) => {
-      // _id, streetAddress, suite, city, state, zip, startDate, endDate, startTime, endTime, squareFeet, jobDetails, numberOfClientEmployees, client, employees
-      // if (context.user) {
-      const user = await Schedule.create({
+      // if (context.user) {)
+      const schedule = await Schedule.create({
         _id,
         streetAddress,
         suite,
@@ -685,24 +685,8 @@ const resolvers = {
         employees,
         isDisplayable,
       });
-      return {
-        _id,
-        streetAddress,
-        suite,
-        city,
-        state,
-        zip,
-        startDate,
-        endDate,
-        startTime,
-        endTime,
-        squareFeet,
-        jobDetails,
-        numberOfClientEmployees,
-        client,
-        employees,
-        isDisplayable,
-      };
+      // console.log('add user resolver = ', schedule);
+      return schedule
       // }
       // throw new AuthenticationError("You need to be logged in!");
     },
