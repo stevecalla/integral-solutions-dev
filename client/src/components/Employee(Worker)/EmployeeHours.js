@@ -216,8 +216,6 @@ function EmployeeHours() {
 
   //section update database - this mutation is an upsert...it either updates or creates a record
   const handleUpdateDatabase = async (data) => {
-    console.log(data);
-
     try {
       // eslint-disable-next-line
       const { data2 } = await updateHours({
