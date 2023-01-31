@@ -134,7 +134,7 @@ function ScheduleAdd() {
   function businessNameSelect(event) {
     setBusinessName(event.target.value); //used to manage the state of the business name / client drop down box
     setSelectedBusinessName(event.target.value); //used to add the selected business to the employee and clietn model
-  };
+  }
 
   //SECTION HANDLE INPUT
   const handleInputChange = (e) => {
@@ -227,7 +227,7 @@ function ScheduleAdd() {
         .map((id) => id?._id)
         .toString()
     );
-    console.log('schedule id = ', mostRecentScheduleAddId);
+    console.log("schedule id = ", mostRecentScheduleAddId);
 
     try {
       if (mostRecentScheduleAddId && selectedBusinessName) {
@@ -244,7 +244,9 @@ function ScheduleAdd() {
         updateClientSchedule({
           variables: {
             id: clients?.clients
-              ?.filter((client) => client?.businessName === selectedBusinessName)
+              ?.filter(
+                (client) => client?.businessName === selectedBusinessName
+              )
               .map((id) => id?._id)
               .toString(), // convert client name to client._id
             schedule: mostRecentScheduleAddId,
@@ -595,7 +597,9 @@ function ScheduleAdd() {
               <Form.Control
                 className="custom-border"
                 type="date"
-                min={startDate ? startDate : new Date().toISOString().split("T")[0]}
+                min={
+                  startDate ? startDate : new Date().toISOString().split("T")[0]
+                }
                 name="endDate"
                 value={endDate}
                 onChange={handleInputChange}

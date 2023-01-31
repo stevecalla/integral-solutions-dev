@@ -19,26 +19,27 @@ const AdminPortal = ({
   employeeListButtonIsActive,
   clientListButtonIsActive,
 }) => {
+
   // get user info to render to page
-  const userId = getUserId();
-  const { loading, data } = useQuery(QUERY_ME, {
-    variables: { id: userId },
-    // if skip is true, this query will not be executed; in this instance, if the user is not logged in this query will be skipped when the component mounts
-    skip: !Auth.loggedIn(),
-  });
+  // const userId = getUserId();
+  // const { loading, data } = useQuery(QUERY_ME, {
+  //   variables: { id: userId },
+  //   // if skip is true, this query will not be executed; in this instance, if the user is not logged in this query will be skipped when the component mounts
+  //   skip: !Auth.loggedIn(),
+  // });
 
   let navigate = useNavigate();
 
-  if (loading) {
-    return (
-      <div
-        style={{ minHeight: "80vh", width: "100vw" }}
-        className="d-flex justify-content-center align-items-center align-content-center mt-5"
-      >
-        <div className="lds-hourglass"></div>
-      </div>
-    );
-  } else {
+  // if (loading) {
+  //   return (
+  //     <div
+  //       style={{ minHeight: "80vh", width: "100vw" }}
+  //       className="d-flex justify-content-center align-items-center align-content-center mt-5"
+  //     >
+  //       <div className="lds-hourglass"></div>
+  //     </div>
+  //   );
+  // } else {
     return (
       <>
         <Container style={{ marginTop: "25px" }}>
@@ -100,7 +101,7 @@ const AdminPortal = ({
         </Container>
       </>
     );
-  }
+  // }
 };
 
 export default AdminPortal;
