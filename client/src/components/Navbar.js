@@ -37,7 +37,7 @@ const AppNavbar = () => {
           </Nav.Link>
           {!Auth.loggedIn() && (
             <>
-              <Nav.Link className="navLink" as={Link} to="/shoplinks">
+              <Nav.Link className="navLink" as={Link} to="/shop-links">
                 Shop Furniture
               </Nav.Link>
             </>
@@ -47,7 +47,7 @@ const AppNavbar = () => {
             Auth.isAdmin() === true &&
             Auth.isLocked() === false && (
               <>
-                <Nav.Link className="navLink" as={Link} to="/work-order" reloadDocument>
+                <Nav.Link className="navLink" as={Link} to="/jobs-panel" reloadDocument>
                   Admin
 
                 </Nav.Link>
@@ -59,7 +59,7 @@ const AppNavbar = () => {
               <Nav.Link
                 className="navLink"
                 as={Link}
-                to="/employee"
+                to="/upcoming-jobs"
                 reloadDocument
               >
                 Employee
@@ -67,17 +67,9 @@ const AppNavbar = () => {
             </>
           )}
 
-          {Auth.loggedIn() && Auth.isLocked() === false && (
-            <>
-              <Nav.Link className="navLink" as={Link} to="/hours">
-                Hours
-              </Nav.Link>
-            </>
-          )}
-
           {!Auth.loggedIn() && (
             <>
-              <Nav.Link className="navLink" as={Link} to="/contact">
+              <Nav.Link className="navLink" as={Link} to="/contact-us">
                 Contact Us
               </Nav.Link>
             </>

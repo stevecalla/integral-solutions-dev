@@ -114,8 +114,6 @@ function EmployeeHours() {
   //section handle input
   const handleInput = async (event) => {
     event.preventDefault();
-    // console.log("input = ", event.target.value);
-    // console.log("string = ", event.target.name.substring(0, 3));
 
     const { name, value } = event.target;
 
@@ -163,9 +161,6 @@ function EmployeeHours() {
   //section handle submit
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    console.log(event.currentTarget);
-    console.log("sunday = ", sunday);
 
     // let daySubmitted = event.currentTarget.id.substring()
     let hoursInput = document.querySelectorAll(".hourInput"); //get array of hoursInput elements
@@ -245,7 +240,6 @@ function EmployeeHours() {
 
   //SECTION update the employee array with the id for hour added
   useEffect(() => {
-    // console.log("useeffect = ", mostRecentHourUpdateId);
 
     //use the mostRecentHourUpdateId & add it to the employee array
     try {
@@ -358,7 +352,6 @@ function EmployeeHours() {
     if (renderData?.length > 0) {
       for (let i = 0; i < renderData.length; i++) {
         if (renderData[i].weekDay === 0) {
-          // console.log(renderData[i])
           setSunday({
             ...sunday,
             startTime: renderData[i].startTime,
@@ -366,7 +359,6 @@ function EmployeeHours() {
             hours: renderData[i].hours,
           });
         } else if (renderData[i].weekDay === 1) {
-          // console.log(renderData[i])
           setMonday({
             ...monday,
             startTime: renderData[i].startTime,
@@ -374,7 +366,6 @@ function EmployeeHours() {
             hours: renderData[i].hours,
           });
         } else if (renderData[i].weekDay === 2) {
-          // console.log(renderData[i])
           setTuesday({
             ...tuesday,
             startTime: renderData[i].startTime,
@@ -382,7 +373,6 @@ function EmployeeHours() {
             hours: renderData[i].hours,
           });
         } else if (renderData[i].weekDay === 3) {
-          // console.log(renderData[i])
           setWednesday({
             ...wednesday,
             startTime: renderData[i].startTime,
@@ -390,7 +380,6 @@ function EmployeeHours() {
             hours: renderData[i].hours,
           });
         } else if (renderData[i].weekDay === 4) {
-          // console.log(renderData[i])
           setThursday({
             ...thursday,
             startTime: renderData[i].startTime,
@@ -398,7 +387,6 @@ function EmployeeHours() {
             hours: renderData[i].hours,
           });
         } else if (renderData[i].weekDay === 5) {
-          // console.log(renderData[i])
           setFriday({
             ...friday,
             startTime: renderData[i].startTime,
@@ -406,7 +394,6 @@ function EmployeeHours() {
             hours: renderData[i].hours,
           });
         } else if (renderData[i].weekDay === 6) {
-          // console.log(renderData[i])
           setSaturday({
             ...saturday,
             startTime: renderData[i].startTime,
@@ -426,25 +413,18 @@ function EmployeeHours() {
     for (let i = 0; i < startTimeElements.length; i++) {
       if (startTimeElements[i].name === "startTimeSunday") {
         startTimeElements[i].value = sunday.startTime;
-        // console.log('sunday = ', sunday, sunday.startTime)
       } else if (startTimeElements[i].name === "startTimeMonday") {
         startTimeElements[i].value = monday.startTime;
-        // console.log('sunday = ', sunday, sunday.startTime)
       } else if (startTimeElements[i].name === "startTimeTuesday") {
         startTimeElements[i].value = tuesday.startTime;
-        // console.log('sunday = ', sunday, sunday.startTime)
       } else if (startTimeElements[i].name === "startTimeWednesday") {
         startTimeElements[i].value = wednesday.startTime;
-        // console.log('sunday = ', sunday, sunday.startTime)
       } else if (startTimeElements[i].name === "startTimeThursday") {
         startTimeElements[i].value = thursday.startTime;
-        // console.log('sunday = ', sunday, sunday.startTime)
       } else if (startTimeElements[i].name === "startTimeFriday") {
         startTimeElements[i].value = friday.startTime;
-        // console.log('sunday = ', sunday, sunday.startTime)
       } else if (startTimeElements[i].name === "startTimeSaturday") {
         startTimeElements[i].value = saturday.startTime;
-        // console.log('sunday = ', sunday, sunday.startTime)
       }
     }
 
@@ -472,19 +452,19 @@ function EmployeeHours() {
     let hoursInput = document.querySelectorAll(".hourInput"); //get array of hoursInput elements
     for (let i = 0; i < hoursInput.length; i++) {
       if (endTimeElements[i].name === "endTimeSunday") {
-        hoursInput[i].innerText = `Hours: ${sunday.hours}`;
+        hoursInput[i].innerText = `Hours: ${parseFloat(sunday.hours).toFixed(2)}`;
       } else if (endTimeElements[i].name === "endTimeMonday") {
-        hoursInput[i].innerText = `Hours: ${monday.hours}`;
+        hoursInput[i].innerText = `Hours: ${parseFloat(monday.hours).toFixed(2)}`;
       } else if (endTimeElements[i].name === "endTimeTuesday") {
-        hoursInput[i].innerText = `Hours: ${tuesday.hours}`;
+        hoursInput[i].innerText = `Hours: ${parseFloat(tuesday.hours).toFixed(2)}`;
       } else if (endTimeElements[i].name === "endTimeWednesday") {
-        hoursInput[i].innerText = `Hours: ${wednesday.hours}`;
+        hoursInput[i].innerText = `Hours: ${parseFloat(wednesday.hours).toFixed(2)}`;
       } else if (endTimeElements[i].name === "endTimeThursday") {
-        hoursInput[i].innerText = `Hours: ${thursday.hours}`;
+        hoursInput[i].innerText = `Hours: ${parseFloat(thursday.hours).toFixed(2)}`;
       } else if (endTimeElements[i].name === "endTimeFriday") {
-        hoursInput[i].innerText = `Hours: ${friday.hours}`;
+        hoursInput[i].innerText = `Hours: ${parseFloat(friday.hours).toFixed(2)}`;
       } else if (endTimeElements[i].name === "endTimeSaturday") {
-        hoursInput[i].innerText = `Hours: ${saturday.hours}`;
+        hoursInput[i].innerText = `Hours: ${parseFloat(saturday.hours).toFixed(2)}`;
       }
     }
 

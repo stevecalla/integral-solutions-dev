@@ -43,18 +43,8 @@ function ScheduleAdd() {
   const [client, setClient] = useState("");
   const [selectedEmployees, setSelectedEmployees] = useState([]);
   const [selectedBusinessName, setSelectedBusinessName] = useState(""); //used to main businessName state, while businessName is adjusted to match the select box
+  const [mostRecentScheduleAddId, setMostRecentScheduleAddId] = useState();
   const [areAllFieldsFilled, setAreAllFieldsFilled] = useState(true);
-
-  //SECTION SET STATE FOR THE SELECTED BUSINESS/CLIENT NAME DROPDOWN
-  function businessNameSelect(event) {
-    setBusinessName(event.target.value); //used to manage the state of the business name / client drop down box
-    setSelectedBusinessName(event.target.value); //used to add the selected business to the employee and clietn model
-  }
-
-  //fix
-  // useEffect(() => {
-  //   console.log("useffect business name = ", businessName);
-  // }, [businessName]);
 
   // VALIDATION
   const [showBusinessNameValidation, setShowBusinessNameValidation] =
@@ -77,7 +67,7 @@ function ScheduleAdd() {
   ] = useState(false);
 
   //SECTION QUERIES / MUTATIONS
-  // get schedule
+  // get schedule / jobs query
   const {
     // eslint-disable-next-line
     loading: scheduleLoad,
@@ -93,7 +83,7 @@ function ScheduleAdd() {
     },
   });
 
-  // get clients
+  // get clients query
   const {
     // eslint-disable-next-line
     loading: clientsLoad,
@@ -108,7 +98,7 @@ function ScheduleAdd() {
     },
   });
 
-  // get employees
+  // get employees query
   const {
     // eslint-disable-next-line
     loading: empLoad,
@@ -123,16 +113,10 @@ function ScheduleAdd() {
     },
   });
 
-  // add schedule
-
-  const [mostRecentScheduleAddId, setMostRecentScheduleAddId] = useState(); //fix
-
+  // add schedule mutation
   const [addSchedule] = useMutation(ADD_SCHEDULE, {
     onCompleted: (data) => {
-      //fix
-      // console.log("add schedule = ", data);
       setMostRecentScheduleAddId(data?.addSchedule?._id);
-      // console.log("most recent id = ", mostRecentScheduleAddId);
     },
     refetchQueries: [
       { query: QUERY_SCHEDULE }, // DocumentNode object parsed with gql
@@ -140,43 +124,16 @@ function ScheduleAdd() {
     ],
   });
 
-  // useEffect(() => {
-  //   console.log(mostRecentScheduleAddId);
-  // }, [mostRecentScheduleAddId]);
-
   // add new schedule / job to the appropriate client
   const [updateClientSchedule] = useMutation(UPDATE_CLIENT_SCHEDULE);
 
   // add new schedule / job to the appropriate employee(s)
   const [updateEmployeeSchedule] = useMutation(UPDATE_EMPLOYEE_SCHEDULE);
 
-  //SECTION ADD OR REMOVE FROM SELECTED EMPLOYEE FROM PAGE
-  const createSelectedEmployees = (event) => {
-    let firstName =
-      event.target.options[event.target.selectedIndex].dataset.firstname;
-    let lastName =
-      event.target.options[event.target.selectedIndex].dataset.lastname;
-    let employeeId =
-      event.target.options[event.target.selectedIndex].dataset.id;
-
-    for (let i = 0; i < selectedEmployees.length; i++) {
-      if (selectedEmployees[i].employeeId === employeeId) {
-        return;
-      }
-    }
-
-    setSelectedEmployees((selectedEmployee) => [
-      ...selectedEmployees,
-      { firstName, lastName, employeeId },
-    ]);
-  };
-
-  function removeEmployee(event) {
-    let keepEmployees = selectedEmployees.filter(
-      (item) => item.employeeId !== event.target.value
-    );
-
-    setSelectedEmployees(keepEmployees);
+  //SECTION SET STATE FOR THE SELECTED BUSINESS/CLIENT NAME DROPDOWN
+  function businessNameSelect(event) {
+    setBusinessName(event.target.value); //used to manage the state of the business name / client drop down box
+    setSelectedBusinessName(event.target.value); //used to add the selected business to the employee and clietn model
   }
 
   //SECTION HANDLE INPUT
@@ -216,7 +173,6 @@ function ScheduleAdd() {
   const handleAddScheduleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log("handle submit = ", businessName);
     setBusinessName(businessName);
 
     let reformattedStartDate = format_date_string(startDate, startTime);
@@ -246,56 +202,28 @@ function ScheduleAdd() {
         },
       });
 
-      console.log("new job = ", data);
     } catch (err) {
       console.error(err);
     }
 
-    // fix
-    // refetch the list of schedules/jobs to get the most recent id added
-    // let getScheduleIds = await scheduleRefetch();
-    // let scheduleIdsLength = getScheduleIds.data.schedules.length - 1;
-    // let mostRecentScheduleId =
-    //   getScheduleIds.data.schedules[scheduleIdsLength]._id;
-
-    // updateClientJobs(mostRecentScheduleId);
-    // updateEmployeeJobs(mostRecentScheduleId);
-
     !areAllFieldsFilled ? setShowSuccess(true) : setShowSuccess(false);
-    resetForm();
+    // resetForm();
+
+    //reset form happens after useEffect for the employee array so as not to clear out the selectedEmployee state prior to updating employee model
   };
 
   //section update client array of jobs/schedule
   useEffect(() => {
-    //fix
-    console.log("client = ");
-    console.log(clients);
-    console.log("businessName = ", businessName);
-    console.log("selected businessName = ", selectedBusinessName);
-    console.log(
-      clients?.clients
-        ?.filter((client) => client?.businessName === businessName)
-        .map((id) => id?._id)
-        .toString()
-    );
-    console.log('schedule id = ', mostRecentScheduleAddId);
 
     try {
       if (mostRecentScheduleAddId && selectedBusinessName) {
-        console.log(
-          "inside try block = ",
-          "business name = ",
-          businessName,
-          selectedBusinessName,
-          mostRecentScheduleAddId,
-          clients
-        );
-
-        // eslint-disable-next-line
+        
         updateClientSchedule({
           variables: {
             id: clients?.clients
-              ?.filter((client) => client?.businessName === selectedBusinessName)
+              ?.filter(
+                (client) => client?.businessName === selectedBusinessName
+              )
               .map((id) => id?._id)
               .toString(), // convert client name to client._id
             schedule: mostRecentScheduleAddId,
@@ -326,47 +254,44 @@ function ScheduleAdd() {
     } catch (err) {
       console.error(err);
     }
+
+    resetForm();
     // eslint-disable-next-line
   }, [mostRecentScheduleAddId]);
 
-  // // //fix
-  // // // update client schedule array
-  // // const updateClientJobs = async (mostRecentScheduleId) => {
-  // //   try {
-  // //     // eslint-disable-next-line
-  // //     const { data } = await updateClientSchedule({
-  // //       variables: {
-  // //         id: clients?.clients
-  // //           ?.filter((client) => client.businessName === businessName)
-  // //           .map((id) => id._id)
-  // //           .toString(), // convert client name to client._id
-  // //         schedule: mostRecentScheduleId,
-  // //       },
-  // //     });
-  // //   } catch (err) {
-  // //     console.error(err);
-  // //   }
-  // // };
-
-  // //fix
-  // // update employee schedule array
-  // const updateEmployeeJobs = async (mostRecentScheduleId) => {
-  //   try {
-  //     for (let i = 0; i < selectedEmployees.length; i++) {
-  //       // eslint-disable-next-line
-  //       const { data } = await updateEmployeeSchedule({
-  //         variables: {
-  //           id: selectedEmployees[i].employeeId,
-  //           schedule: mostRecentScheduleId,
-  //         },
-  //       });
-  //     }
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
   // SECTION UTILITY FUNCTIONS
+
+  //SECTION ADD OR REMOVE FROM SELECTED EMPLOYEE FROM PAGE
+  //create array of employees assigned/selected for the added job
+  const createSelectedEmployees = (event) => {
+    let firstName =
+      event.target.options[event.target.selectedIndex].dataset.firstname;
+    let lastName =
+      event.target.options[event.target.selectedIndex].dataset.lastname;
+    let employeeId =
+      event.target.options[event.target.selectedIndex].dataset.id;
+
+    for (let i = 0; i < selectedEmployees.length; i++) {
+      if (selectedEmployees[i].employeeId === employeeId) {
+        return;
+      }
+    }
+
+    setSelectedEmployees((selectedEmployee) => [
+      ...selectedEmployees,
+      { firstName, lastName, employeeId },
+    ]);
+  };
+
+  //remove assigned selected employees if clicked to delete
+  function removeEmployee(event) {
+    let keepEmployees = selectedEmployees.filter(
+      (item) => item.employeeId !== event.target.value
+    );
+
+    setSelectedEmployees(keepEmployees);
+  }
+
   // If user clicks off an input field without entering text, then validation message "is required" displays
   const handleBlurChange = (e) => {
     const { name, value } = e.target;
@@ -422,6 +347,7 @@ function ScheduleAdd() {
     setNumberOfClientEmployees("");
     setClient("");
     setAreAllFieldsFilled(false);
+    setSelectedEmployees([]); //fix
   };
 
   // If all fields are populated then enable the submit button
@@ -536,7 +462,6 @@ function ScheduleAdd() {
             value={streetAddress}
             onChange={handleInputChange}
             onBlur={handleBlurChange}
-            //required
           />
         </Form.Group>
         <Row className="addy">
@@ -556,7 +481,6 @@ function ScheduleAdd() {
               value={city}
               onChange={handleInputChange}
               onBlur={handleBlurChange}
-              //required
             />
           </Col>
           <Col xs={5}>
@@ -627,7 +551,7 @@ function ScheduleAdd() {
                 type="date"
                 min={new Date().toISOString().split("T")[0]}
                 name="startDate"
-                defaultValue={client?.startDate}
+                value={startDate}
                 onChange={handleInputChange}
                 onBlur={handleBlurChange}
               />
@@ -650,12 +574,13 @@ function ScheduleAdd() {
               <Form.Control
                 className="custom-border"
                 type="date"
-                min={startDate ? startDate : new Date().toISOString().split("T")[0]}
+                min={
+                  startDate ? startDate : new Date().toISOString().split("T")[0]
+                }
                 name="endDate"
                 value={endDate}
                 onChange={handleInputChange}
                 onBlur={handleBlurChange}
-                //required
               />
             </Form.Group>
           </Col>
