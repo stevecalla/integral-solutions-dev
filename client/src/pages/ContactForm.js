@@ -67,9 +67,9 @@ function ContactForm() {
 
     handleCheckbox(name, value, checked, selectedService);
 
-    if (!checked & name !== "services") {
+    if (!checked & (name !== "services")) {
       handleOtherInputs(name, value);
-    };
+    }
   };
 
   //handle checkbox input
@@ -288,6 +288,13 @@ function ContactForm() {
         className=" mx-3 pb-2 d-flex flex-column align-self-center align-items-center shadow rounded-lg border border-secondary "
         style={{ margin: "30px 30px 30px 50%", textAlign: "center" }}
       >
+        <Container>
+          <Row className="justify-content-center">
+            <p style={{ fontSize: "30px", marginTop: "" }}>
+              <b>Contact Us</b>
+            </p>
+          </Row>
+        </Container>
         {/* media queries for contact form are in navbar.css */}
         <Container className="">
           {errorMessage && (
