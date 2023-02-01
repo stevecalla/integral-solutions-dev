@@ -17,7 +17,7 @@
 
 ## Description
 
-Enterprise application built for Integral Solutions office furniture moving Company. 
+MERN app with customer-facing website and employee portal for a furniture installation business.
 
 ## Usage
 
@@ -27,14 +27,16 @@ This app is deployed using Heroku. From a development perspective, this app uses
 
 The following features exist:
 
-1. Full admin and employee panels to track clients, jobs and employee data.
-2. Contact form functionality using sendgrid for direct client inquiries
-3. Employee navigation tools to route daily employee travel
+1. Customer facing with home, contact us and partner shopping links pages.
+2. Employee login with an administration and employee panel.
+3. The administration panel includes functionality to manage clients, jobs and employees with CRUD (Mongo/GraphQL) view, add, update and (soft) delete for all clients, jobs and employees respectively. The employee section includes weekly hours reporting.
+4. The employee panel is allows employees to view upcoming and past jobs as well as the ability to enter hours worked for the current week.
+5. Additional features include an email server (to serve contact us and password reset via SendGrid), maps links to quickly access a jobs location, 100% mobile responsive, PWA (downloadable as a local app and works online but not offline for the MVP), TinyURL integration and more.
 
 
 ## Technology
 
-1. `React:` JavaScript transcompiler mainly used to convert ECMAScript 2015+ code into a backwards-compatible version of JavaScript.
+1. `React:`
 2. `Git/Github:` Repo and version management.
 3. `Mongo/Mongoose`: Database.
 4. `React-Bootstrap`: For most of the CSS styling.
@@ -42,9 +44,8 @@ The following features exist:
 7. `jsonwebtoken/jwt decode`: For user authentication and token decoding.
 8. `Heroku`: Deployment.
 9. `FullCalendar` npm package.
-10. NPM Packages: `FontAwesome`, `moment`, `phone-number-formater`, `react-bootstrap-icons`.
-11. `API`: Google maps - a) `places`, b) `directions` and c) `reverse geocode` & d) `TinyURL`.
-12. `PWA`: Is intallable as an app via PWA, and works offline.
+10. NPM Packages: `FontAwesome`, `moment`, `dayjs`,  `phone-number-formater`, `react-bootstrap-icons`, `react-text-mock`, `bcrypt`.
+11. `PWA`: Is intallable as an app via PWA, and works online.
 
 ## Website Preview
 
@@ -58,32 +59,33 @@ The following features exist:
 
 <!-- <img src="./client/src/assets/images/login.png" width="700" height="400"> -->
 
-
 ## Installation
 
 Setup: 
-- (1) Fork the repo, (2) Clone the forked repo locally, (3) Run "npm install" (to install the dependencies).
+- (1) Fork the repo, (2) Clone the forked repo locally, (3) Run "npm install" (to install the dependencies), (4) Seed = "npm run seed", (5) Launch Server = "npm run develop" (both GraphQL & 3000 local server).
 
 Setup the Database Schema: 
 - (1) Update or add an .env file. Include the fields below in the .env file. Note that the .env variables are used in the conf folder, connection.js file.
 
   Server-Side '.env`:
   * DB_NAME=integral-solutions
+  * JWT_SECRET_KEY="<key>"
+  * SENDGRID_API_KEY=<key>
 
   Client-Side `.env`:
-  * REACT_APP_GOOGLE_MAPS_API_KEY=<key>
   * REACT_APP_TINY_URL_KEY=<key>
+  * REACT_APP_DEVELOPMENT_URL=http://localhost:3000
+  * REACT_APP_PRODUCTION_URL=<url>
 
-Seed the Database: 
-- Run Server: From the root directory, run either "npm run watch" to start nodemon or "node server.js".
-- Seed Database: (a) To create the database, run "SOURCE ./db/schema.sql" in mySQL, (b) To create the database tables, from the terminal, run "npm run start" or "npm run watch", (c) To seed the database tables, run "npm run seed" or "node ./seeds/index.js".
+  Heroku Deploy:
+  * Install Twillio SendGrip add-in
+  * Use all appropriate .env as noted above
+  * Add Mongo Atlas path to the config as such mongodb+srv://<username>:<password>@cluster0.x8hemhd.mongodb.net/<database name>?
+  * Seed the database in Heroku console using "npm run seed"
 
-Note that the seed will also create entries for the user table including hashed passwords. When loggin into the app these user seeds can be used as test email address. Either obtain an email address from the user table (SELECT * FROM user;) or use an option noted below:
-
-  * email: a@a.com, password: "12345" (note role is employee)
-  * email: b@b.com, password: "12345" (note role is manager)
-
-If you'd like to use NPM nodemon as/if you make changes to the code, please install nodemon as a development dependency using "npm install --save-dev nodemon" (see https://www.npmjs.com/package//nodemon). 
+Login to The Application: 
+* From the home page click "Employee Login" in the lower right hand corner of the footer. Use email address "a@a.com" and password "12345". For all users in the seed "employee" file, the password is consistently "12345". User "a@a.com" has "admin" role and is not locked.
+* Once logged in, the nav menu in the header will allow access to the Admin (for users with admin rights) and Employee panel (which is the default for users without admin rights).
 
 ## Contributing
 
