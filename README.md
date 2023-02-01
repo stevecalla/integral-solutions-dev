@@ -28,8 +28,8 @@ The following features exist:
 1. Customer facing with home, contact us and partner shopping links pages.
 2. Employee login with an administration and employee panel.
 3. The administration panel includes functionality to manage clients, jobs and employees with CRUD (Mongo/GraphQL) view, add, update and (soft) delete for all clients, jobs and employees respectively. The employee section includes weekly hours reporting (which was not meant to be a precise time tracking system but a general hours worked feature).
-4. The employee panel is allows employees to view upcoming and past jobs as well as the ability to enter hours worked for the current week.
-5. Additional features include an email server (to serve contact us & password reset via SendGrid), forgot/reset password,  maps links to quickly access a jobs location, 100% mobile responsive, PWA (downloadable as a local app and works online but not offline for the MVP), TinyURL integration and more.
+4. The employee panel allows employees to view upcoming and past jobs as well as the ability to enter hours worked for the current week.
+5. Additional features include an email server (to serve contact us & password reset via SendGrid), forgot/reset password,  maps links to quickly access a jobs location, 100% mobile responsive, input masks for phone, zip and email, PWA (downloadable as a local app and works online but not offline for the MVP), TinyURL integration and more.
 
 
 ## Technology
