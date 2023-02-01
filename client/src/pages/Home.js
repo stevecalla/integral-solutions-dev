@@ -113,7 +113,7 @@ const Home = () => {
           </Col>
           <Col className="d-flex justify-content-center mb-2">
             <Card style={{ width: "15rem", border: "none" }}>
-              <Card.Img variant="top" src={optimize} />
+              <Card.Img variant="top" src={optimize} alt="Optimized office layout"/>
               <Card.Body>
                 <Card.Title style={{ marginTop: "-15px" }}>
                   Space Analytics
@@ -127,7 +127,7 @@ const Home = () => {
           </Col>
           <Col className="d-flex justify-content-center mb-2">
             <Card style={{ width: "15rem", border: "none" }}>
-              <Card.Img variant="top" src={reconfig} />
+               variant="top" src={reconfig} alt="Optimized office reconfigured"/>
               <Card.Body>
                 <Card.Title style={{ marginTop: "-15px" }}>
                   Reconfiguration
