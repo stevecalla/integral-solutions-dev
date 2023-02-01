@@ -21,8 +21,8 @@
     "username": "Admin",
     "email": "vegaemmanuel1980@gmail.com",
     "password": "12345",
-    "firstName": "Ryan",
-    "lastName": "Stasick",
+    "firstName": "Emmanuel",
+    "lastName": "Garcia",
     "phone": "719-867-5309",
     "isDisplayable": true,
     "isAdmin": true,
@@ -51,5 +51,5 @@
     "hasDriversLicense": "Yes",
     "hour": ["333233343536373839303132"]
   }
-  
+
 ]
