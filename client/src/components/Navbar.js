@@ -16,7 +16,7 @@ const AppNavbar = () => {
         to="/"
         className="d-flex flex-nowrap mx-0"
       >
-        <img className="logo" src={logoTop} alt="logo"></img>
+        <img className="logo" src={logoTop} alt="Integral Solutions logo"></img>
         <div className="brand-container">
           <h2 className="brand-name">Integral Solutions</h2>
           <h6 className="slogan">

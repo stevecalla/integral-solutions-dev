@@ -29,7 +29,7 @@ const Login = ({ renderPanel, loginButtonIsActive }) => {
               <div>
                 <img
                   src={littleFella}
-                  alt="little logo"
+                  alt="Integral Solutions logo"
                   style={{
                     marginTop: "15px",
                     maxHeight: "120px",

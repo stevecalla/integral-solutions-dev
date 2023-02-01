@@ -22,7 +22,7 @@ function ShopLinks() {
               <img
                 className="company-logos"
                 src={steelcase}
-                alt="Steelcase"
+                alt="Steelcase logo"
               ></img>
             </a>
           </Col>
@@ -35,7 +35,7 @@ function ShopLinks() {
               <img
                 className="company-logos"
                 src={officescapes}
-                alt="Office Scapes"
+                alt="Office Scapes logo"
               ></img>
             </a>
           </Col>
@@ -49,7 +49,7 @@ function ShopLinks() {
               <img
                 className="company-logos"
                 src={hermanmiller}
-                alt="Herman Miller"
+                alt="Herman Miller logo"
               ></img>
             </a>
           </Col>
@@ -63,7 +63,7 @@ function ShopLinks() {
               <img
                 className="company-logos"
                 src={officestogo}
-                alt="Offices To Go"
+                alt="Offices To Go logo"
               ></img>
             </a>
           </Col>

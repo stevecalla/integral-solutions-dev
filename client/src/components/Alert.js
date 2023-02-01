@@ -9,7 +9,7 @@ const SuccessAlert = (props) => {
             variant="success"
             show={props.show}
         >
-            <img className="little-fella" src={littleFella} alt="little fella" style={{
+            <img className="little-fella" src={littleFella} alt="Integral Solution logo" style={{
                 maxHeight: "40px",
                 marginBottom: "10px",
                 maxWidth: "40px",
