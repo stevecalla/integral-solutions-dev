@@ -62,7 +62,7 @@ const Home = () => {
         <Row>
           <Col className="d-flex justify-content-center mb-2">
             <Card style={{ width: "15rem", border: "none" }}>
-              <Card.Img variant="top" src={delivery} />
+              <Card.Img variant="top" src={delivery} alt="Delivery truck and workers unloading content"/>
               <Card.Body>
                 <Card.Title style={{ marginTop: "-15px" }}>Delivery</Card.Title>
                 <Card.Text style={{ fontSize: "13px" }}>
@@ -75,7 +75,7 @@ const Home = () => {
           </Col>
           <Col className="d-flex justify-content-center mb-2">
             <Card style={{ width: "15rem", border: "none" }}>
-              <Card.Img variant="top" src={moving} />
+              <Card.Img variant="top" src={moving} alt="Unpacked boxes in an office space"/>
               <Card.Body>
                 <Card.Title style={{ marginTop: "-15px" }}>Moving</Card.Title>
                 <Card.Text style={{ fontSize: "13px" }}>
@@ -87,7 +87,7 @@ const Home = () => {
           </Col>
           <Col className="d-flex justify-content-center mb-2">
             <Card style={{ width: "15rem", border: "none" }}>
-              <Card.Img variant="top" src={install} />
+              <Card.Img variant="top" src={install} alt="Cabinet installation in progress"/>
               <Card.Body>
                 <Card.Title style={{ marginTop: "-15px" }}>
                   Installation
@@ -101,7 +101,7 @@ const Home = () => {
           </Col>
           <Col className="d-flex justify-content-center mb-2">
             <Card style={{ width: "15rem", border: "none" }}>
-              <Card.Img className="pics" variant="top" src={cleaning} />
+              <Card.Img className="pics" variant="top" src={cleaning} alt="Workers cleaning an office space"/>
               <Card.Body>
                 <Card.Title style={{ marginTop: "-15px" }}>Cleaning</Card.Title>
                 <Card.Text style={{ fontSize: "13px" }}>

@@ -11,7 +11,7 @@ function Footer() {
           Serving Greater Denver for Over 15 Years
         </h3>
         <main className="footer-container">
-          <img className="full-logo" src={logo} alt="logo"></img>
+          <img className="full-logo" src={logo} alt="Integral Solutons logo"></img>
           <section className="phone-container">
             <p className="">(720)-232-2510</p>
             <p className="espanol">Se Habla Español!</p>
