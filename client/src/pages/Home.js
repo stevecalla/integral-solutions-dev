@@ -13,11 +13,14 @@ import cleaning from "../assets/images/cleaning.jpg";
 import moving from "../assets/images/moving.jpg";
 import optimize from "../assets/images/optimize.png";
 import reconfig from "../assets/images/reconfig.jpg";
+import office from "../assets/images/office.jpg";
 
 const Home = () => {
   let navigate = useNavigate();
   return (
     <>
+      {/* preload image to improve largest contentful paint in lighthouse */}
+      <link rel="preload" href={office}></link> 
       <main className="bk-img">
         <br></br>
         <div className="overlay-box">
