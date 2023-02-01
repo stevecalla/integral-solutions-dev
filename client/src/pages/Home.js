@@ -13,11 +13,14 @@ import cleaning from "../assets/images/cleaning.jpg";
 import moving from "../assets/images/moving.jpg";
 import optimize from "../assets/images/optimize.png";
 import reconfig from "../assets/images/reconfig.jpg";
+import office from "../assets/images/office.jpg";
 
 const Home = () => {
   let navigate = useNavigate();
   return (
     <>
+      {/* preload image to improve largest contentful paint in lighthouse */}
+      <link rel="preload" href={office}></link> 
       <main className="bk-img">
         <br></br>
         <div className="overlay-box">
@@ -113,7 +116,7 @@ const Home = () => {
           </Col>
           <Col className="d-flex justify-content-center mb-2">
             <Card style={{ width: "15rem", border: "none" }}>
-              <Card.Img variant="top" src={optimize} />
+              <Card.Img variant="top" src={optimize} alt="Optimized office layout"/>
               <Card.Body>
                 <Card.Title style={{ marginTop: "-15px" }}>
                   Space Analytics
@@ -127,7 +130,7 @@ const Home = () => {
           </Col>
           <Col className="d-flex justify-content-center mb-2">
             <Card style={{ width: "15rem", border: "none" }}>
-              <Card.Img variant="top" src={reconfig} />
+               variant="top" src={reconfig} alt="Optimized office reconfigured"/>
               <Card.Body>
                 <Card.Title style={{ marginTop: "-15px" }}>
                   Reconfiguration
