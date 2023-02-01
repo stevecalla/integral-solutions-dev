@@ -1,8 +1,6 @@
-<p align="center">
-<img src=./client/src/assets/images/logo.png width=250>
+<p style="text-align: center">
+  <img src=./client/src/assets/images/logo.png width=250>
 <p>
-
-
 
 ## Index
 
@@ -29,9 +27,9 @@ The following features exist:
 
 1. Customer facing with home, contact us and partner shopping links pages.
 2. Employee login with an administration and employee panel.
-3. The administration panel includes functionality to manage clients, jobs and employees with CRUD (Mongo/GraphQL) view, add, update and (soft) delete for all clients, jobs and employees respectively. The employee section includes weekly hours reporting.
+3. The administration panel includes functionality to manage clients, jobs and employees with CRUD (Mongo/GraphQL) view, add, update and (soft) delete for all clients, jobs and employees respectively. The employee section includes weekly hours reporting (which was not meant to be a precise time tracking system but a general hours worked feature).
 4. The employee panel is allows employees to view upcoming and past jobs as well as the ability to enter hours worked for the current week.
-5. Additional features include an email server (to serve contact us and password reset via SendGrid), maps links to quickly access a jobs location, 100% mobile responsive, PWA (downloadable as a local app and works online but not offline for the MVP), TinyURL integration and more.
+5. Additional features include an email server (to serve contact us & password reset via SendGrid), forgot/reset password,  maps links to quickly access a jobs location, 100% mobile responsive, PWA (downloadable as a local app and works online but not offline for the MVP), TinyURL integration and more.
 
 
 ## Technology
@@ -49,13 +47,17 @@ The following features exist:
 
 ## Website Preview
 
-### Static Screenshots
+HOME PAGE Screenshot
+<img src="./client/src/assets/readme/home-page.png" width="700" height="600">
 
-[Link to WalkThrough Video](https://drive.google.com/file/d/1w3eswEcDTp-oEddsNW0qHvPi9W9iFht3/view)
+ADMIN PANEL Screenshot
+<img src="./client/src/assets/readme/admin-panel.png" width="700" height="600">
 
-[Link to PWA Video](https://drive.google.com/file/d/1rWCGUOQecJ3C8uZmQWN7CETrSV9fm_bZ/view)
+EMPLOYEE PANEL Screenshot
+<img src="./client/src/assets/readme/employee-panel.png" width="700" height="600">
 
-[Build & deploy video](https://drive.google.com/file/d/1ZzLVoxGzF3JVj4q5ayudrvb8mLrwxHUR/view)
+App WalkThrough Video - TBD
+<!-- [Link to WalkThrough Video](https://drive.google.com/file/d/1w3eswEcDTp-oEddsNW0qHvPi9W9iFht3/view) -->
 
 <!-- <img src="./client/src/assets/images/login.png" width="700" height="400"> -->
 
@@ -86,6 +88,9 @@ Setup the Database Schema:
 Login to The Application: 
 * From the home page click "Employee Login" in the lower right hand corner of the footer. Use email address "a@a.com" and password "12345". For all users in the seed "employee" file, the password is consistently "12345". User "a@a.com" has "admin" role and is not locked.
 * Once logged in, the nav menu in the header will allow access to the Admin (for users with admin rights) and Employee panel (which is the default for users without admin rights).
+
+Signup (as an employee): 
+* Note that signup functionality was eliminated in favor of the admin creating/adding a user/employee. This was to avoid allowing random users from getting access to the employee portal (which could have been accomplished in a variety of ways). Employees can use the password reset functionality once created in the system by the admin to reset their password and get access to the system.
 
 ## Contributing
 
