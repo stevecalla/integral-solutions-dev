@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import "../../styles/footer.css";
 
-// import logo from "../../assets/images/logo.bkg.png";
-
 import logo from "../../assets/images-avif/logo.bkg.avif";
 
 function Footer() {

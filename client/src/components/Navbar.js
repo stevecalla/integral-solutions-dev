@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import "../styles/navbar.css";
 
-// import logoTop from "../assets/images/logo-no-slogan.png";
-
 import logoTop from "../assets/images-avif/logo-no-slogan.avif";
 
 const AppNavbar = () => {
