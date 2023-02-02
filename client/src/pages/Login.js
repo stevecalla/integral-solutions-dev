@@ -7,7 +7,9 @@ import LoginForm from "../components/Login/LoginForm";
 import Container from "react-bootstrap/Container";
 import "../styles/button-home.css";
 
-import littleFella from "../assets/images/logo-no-slogan.png";
+// import littleFella from "../assets/images/logo-no-slogan. png";
+
+import littleFella from "../assets/images-avif/logo-no-slogan.avif";
 
 const Login = ({ renderPanel, loginButtonIsActive }) => {
   let navigate = useNavigate();

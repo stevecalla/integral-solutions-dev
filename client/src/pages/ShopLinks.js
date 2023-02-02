@@ -3,11 +3,17 @@ import Footer from "../components/Home/Footer";
 import { Row, Col, Container } from "react-bootstrap";
 import "../styles/shopLinks.css";
 
-import steelcase from "../assets/images/steelcase.jpg";
-import officescapes from "../assets/images/officescapes.jpeg";
-import officestogo from "../assets/images/officestogo.jpg";
-import hermanmiller from "../assets/images/hermanmiller2.png";
-import office from "../assets/images/office.jpg";
+// import steelcase from "../assets/images/steelcase.jpg";
+// import officescapes from "../assets/images/officescapes.jpeg";
+// import officestogo from "../assets/images/officestogo.jpg";
+// import hermanmiller from "../assets/images/hermanmiller2.png";
+// import office from "../assets/images/office.jpg";
+
+import steelcase from "../assets/images-avif/steelcase.avif";
+import officescapes from "../assets/images-avif/officescapes.avif";
+import officestogo from "../assets/images-avif/officestogo.avif";
+import hermanmiller from "../assets/images-avif/hermanmiller2.avif";
+import office from "../assets/images-avif/office.avif";
 
 function ShopLinks() {
   return (
