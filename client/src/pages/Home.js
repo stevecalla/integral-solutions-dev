@@ -7,14 +7,6 @@ import { Container, Button, Row, Col } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import "../styles/home.css";
 
-// import delivery from "../assets/images/delivery.jpg";
-// import install from "../assets/images/install.jpg";
-// import cleaning from "../assets/images/cleaning.jpg";
-// import moving from "../assets/images/moving.jpg";
-// import optimize from "../assets/images/optimize.png";
-// import reconfig from "../assets/images/reconfig.jpg";
-// import office from "../assets/images/office.jpg";
-
 import delivery from "../assets/images-avif/delivery.avif";
 import install from "../assets/images-avif/install.avif";
 import cleaning from "../assets/images-avif/cleaning.avif";
