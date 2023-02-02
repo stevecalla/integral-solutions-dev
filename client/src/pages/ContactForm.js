@@ -676,7 +676,7 @@ function ContactForm() {
                     id={`inline-${type}-3`}
                     onChange={handleInputChange}
                     data-service="reconfig"
-                    checked={serviceList.reconfig}
+                    checked={serviceList.econfig}
                   />
                 </div>
               ))}
