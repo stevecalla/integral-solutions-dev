@@ -1,6 +1,8 @@
 import { Alert } from 'react-bootstrap';
 
-import littleFella from "../assets/images/logo-no-slogan.png";
+// import littleFella from "../assets/images/logo-no-slogan.png";
+
+import littleFella from "../assets/images-avif/logo-no-slogan.avif";
 
 const SuccessAlert = (props) => {
     return (
