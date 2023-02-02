@@ -38,7 +38,7 @@ function ContactForm() {
     install: false,
     clean: false,
     moving: false,
-    econfig: false,
+    reconfig: false,
   });
 
   //  validation
@@ -676,7 +676,7 @@ function ContactForm() {
                     id={`inline-${type}-3`}
                     onChange={handleInputChange}
                     data-service="reconfig"
-                    checked={serviceList.econfig}
+                    checked={serviceList.reconfig}
                   />
                 </div>
               ))}
