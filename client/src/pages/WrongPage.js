@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Container, Row, Button } from "react-bootstrap/";
 import "../styles/button-style.css";
 
-import wrongPageImg from "../assets/not-found.png";
+import wrongPageImg from "../assets/images-avif/404-not-found.avif";
 
 const WrongPage = ({ renderPanel }) => {
   const navigate = useNavigate();
