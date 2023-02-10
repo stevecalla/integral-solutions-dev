@@ -56,10 +56,9 @@ ADMIN PANEL Screenshot
 EMPLOYEE PANEL Screenshot
 <img src="./client/src/assets/readme/employee-panel.png" width="700" height="600">
 
-App WalkThrough Video - TBD
-<!-- [Link to WalkThrough Video](https://drive.google.com/file/d/1w3eswEcDTp-oEddsNW0qHvPi9W9iFht3/view) -->
+App WalkThrough Video
+https://drive.google.com/file/d/13bxHHp-pFgm0KyqiKX5LPrFiuXoWs5B1/view
 
-<!-- <img src="./client/src/assets/images/login.png" width="700" height="400"> -->
 
 ## Installation
 
