@@ -539,7 +539,7 @@ function ScheduleUpdate() {
             className="custom-border"
             type="text"
             placeholder="Select Client"
-            value={"form-select"}  //fix 
+            value={"form-select"}
             name={"form-select"}
             onChange={handleSelectedSchedule}
           >
@@ -548,6 +548,7 @@ function ScheduleUpdate() {
                 ? `${
                     prevScheduleData?.client.businessName
                   }: ${format_date_MMDDYYYY(prevScheduleData?.startDate)}`
+
                 : "Select"}
             </option>
             {arrayForSortDate.map((job, index) => (
@@ -673,10 +674,11 @@ function ScheduleUpdate() {
                 </Form.Label>
               </div>
               <Form.Control
-                className="custom-border"
+                className="custom-border startDate"
                 type="date"
                 min={
                   format_date_YYYYDDMM(prevScheduleData.startDate) <
+
                   new Date().toISOString().split("T")[0]
                     ? format_date_YYYYDDMM(prevScheduleData.startDate)
                     : new Date().toISOString().split("T")[0]
@@ -693,11 +695,12 @@ function ScheduleUpdate() {
               />
             </Form.Group>
           </Col>
-
+          </Row>
+          <Row className="addy">
           <Col>
             <Form.Group>
               <div className="form-label">
-                <Form.Label style={{ fontWeight: "bolder" }}>
+                <Form.Label style={{ fontWeight: "bolder", marginTop: "-15px" }}>
                   End Date
                 </Form.Label>
                 <Form.Label
@@ -709,7 +712,7 @@ function ScheduleUpdate() {
                 </Form.Label>
               </div>
               <Form.Control
-                className="custom-border"
+                className="custom-border endDate"
                 type="date"
                 min={
                   format_date_YYYYDDMM(prevScheduleData.startDate) <
@@ -729,10 +732,12 @@ function ScheduleUpdate() {
               />
             </Form.Group>
           </Col>
+          </Row>
+          <Row className="addy">
           <Col>
-            <Form.Group>
+            <Form.Group >
               <div className="form-label">
-                <Form.Label style={{ fontWeight: "bolder" }}>
+                <Form.Label style={{ fontWeight: "bolder", marginTop: "-15px" }}>
                   Start Time
                 </Form.Label>
                 <Form.Label
@@ -758,7 +763,7 @@ function ScheduleUpdate() {
               />
             </Form.Group>
           </Col>
-        </Row>
+          </Row>
 
         <Row className="addy">
           <Col xs={6}>
@@ -897,7 +902,7 @@ function ScheduleUpdate() {
         </Form.Group>
 
         <SuccessAlert
-          message="Job details has been updated"
+          message="Job details have been updated"
           show={showSuccess}
         ></SuccessAlert>
 
