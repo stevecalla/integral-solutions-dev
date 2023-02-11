@@ -11,6 +11,12 @@
   padding-bottom: 15px;
 }
 
+.startTime{
+  width: 63%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 .margin-expand {
   margin-right: -12px;
 }
@@ -22,5 +28,20 @@
 
   .addy {
     width: 95%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .addy {
+    width: 100%;
+  }
+  .startDate {
+    width: 100%;
+  }
+  .endDate {
+    width: 100%;
+  }
+  .startTime {
+    width: 100%;
   }
 }
