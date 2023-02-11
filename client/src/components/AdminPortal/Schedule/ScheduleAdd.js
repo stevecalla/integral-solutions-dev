@@ -178,10 +178,6 @@ function ScheduleAdd() {
     let reformattedStartDate = format_date_string(startDate, startTime);
     let reformattedEndDate = format_date_string(endDate, startTime); //used start time since endTime is no on the form
 
-    alert(startDate)
-    alert(startTime)
-    alert(format_date_string(startDate, startTime ? startTime : "09:00:00 (MST)"))
-
     try {
       // eslint-disable-next-line
       const { data } = await addSchedule({
@@ -488,7 +484,7 @@ function ScheduleAdd() {
             />
           </Col>
           <Col xs={5}>
-            <Form.Label style={{ fontWeight: "bolder" }}>State</Form.Label>
+            <Form.Label style={{ fontWeight: "bolder", marginTop: "15px" }}>State</Form.Label>
             <Form.Label
               className={`validation-color ${
                 showStateValidation ? "show" : "hide"
@@ -512,7 +508,7 @@ function ScheduleAdd() {
             </Form.Control>
           </Col>
           <Col>
-            <Form.Label style={{ fontWeight: "bolder" }}>Zipcode</Form.Label>
+            <Form.Label style={{ fontWeight: "bolder", marginTop: "15px" }}>Zipcode</Form.Label>
             <Form.Label
               className={`validation-color ${
                 showZipValidation ? "show" : "hide"
@@ -536,7 +532,7 @@ function ScheduleAdd() {
         </Row>
         <Row className="addy">
           <Col>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group  controlId="formBasicEmail">
               <div className="form-label">
                 <Form.Label style={{ fontWeight: "bolder" }}>
                   Start Date
@@ -551,7 +547,7 @@ function ScheduleAdd() {
                 </Form.Label>
               </div>
               <Form.Control
-                className="custom-border"
+                className="custom-border startDate"
                 type="date"
                 min={new Date().toISOString().split("T")[0]}
                 name="startDate"
@@ -561,10 +557,12 @@ function ScheduleAdd() {
               />
             </Form.Group>
           </Col>
+          </Row>
+          <Row className="addy">
           <Col>
             <Form.Group controlId="formBasicEmail">
               <div className="form-label">
-                <Form.Label style={{ fontWeight: "bolder" }}>
+                <Form.Label style={{ fontWeight: "bolder", marginTop: "-15px" }}>
                   End Date
                 </Form.Label>
                 <Form.Label
@@ -576,7 +574,7 @@ function ScheduleAdd() {
                 </Form.Label>
               </div>
               <Form.Control
-                className="custom-border"
+                className="custom-border endDate"
                 type="date"
                 min={
                   startDate ? startDate : new Date().toISOString().split("T")[0]
@@ -588,10 +586,12 @@ function ScheduleAdd() {
               />
             </Form.Group>
           </Col>
+          </Row>
+          <Row className="addy">
           <Col>
-            <Form.Group controlId="formBasicEmail">
-              <div className="form-label">
-                <Form.Label style={{ fontWeight: "bolder" }}>
+            <Form.Group >
+              <div className="form-label" controlId="formBasicEmail">
+                <Form.Label style={{ fontWeight: "bolder", marginTop: "-15px" }}>
                   Start Time
                 </Form.Label>
                 <Form.Label
@@ -616,7 +616,7 @@ function ScheduleAdd() {
 
         <Row className="addy">
           <Col xs={6}>
-            <Form.Label style={{ fontWeight: "bolder" }}>
+            <Form.Label style={{ fontWeight: "bolder", marginTop: "-15px" }}>
               Office Sqft
             </Form.Label>
             <Form.Label
@@ -638,7 +638,7 @@ function ScheduleAdd() {
 
           <Col xs={6}>
             <Form.Group>
-              <Form.Label style={{ fontWeight: "bolder" }}>
+              <Form.Label style={{ fontWeight: "bolder", marginTop: "-15px" }}>
                 Staff Size
               </Form.Label>
               <Form.Label
@@ -666,7 +666,7 @@ function ScheduleAdd() {
         </Row>
 
         <Form.Group className="form-length">
-          <Form.Label style={{ fontWeight: "bolder" }}>
+          <Form.Label style={{ fontWeight: "bolder", marginTop: "-15px" }}>
             Select Employees for Job
           </Form.Label>
           <Form.Control
