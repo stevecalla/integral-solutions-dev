@@ -75,10 +75,9 @@ const format_date_ISOString = (date) => {
   return date_iso_string;
 };
 
-
 const format_date_ISOStringNoTime = (date) => {
   // FROM: Mon Jan 23 2023 10:55:38 GMT-0700 (Mountain Standard Time)
-  // TO: 2023-01-23T17:55:38.020Z
+  // TO: 2023-01-23
 
   let date_iso_string_no_time;
 

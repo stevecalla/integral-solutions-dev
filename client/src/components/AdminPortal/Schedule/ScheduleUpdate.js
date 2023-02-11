@@ -9,7 +9,6 @@ import {
   QUERY_ALL_EMPLOYEES,
 } from "../../../utils/queries";
 import {
-
   UPDATE_EMPLOYEE_SCHEDULE,
   REMOVE_EMPLOYEE_SCHEDULE,
   UPDATE_SCHEDULE,
@@ -23,7 +22,7 @@ import {
   format_date_ISOStringNoTime,
 } from "../../../utils/dateFormat";
 import { STATE_DROPDOWN } from "../../../utils/stateDropdown";
-import MaskedInput from 'react-text-mask';
+import MaskedInput from "react-text-mask";
 import { NUMBER_OF_EMPLOYEES } from "../../../utils/numberOfEmployees";
 
 import { Row, Col, Container, Form, Button } from "react-bootstrap";
@@ -31,8 +30,6 @@ import "../../../styles/Contact.css";
 import "../../../styles/button-style.css";
 import "../../../styles/Forms.css";
 import SuccessAlert from "../../Alert";
-
-
 
 function ScheduleUpdate() {
   const [showSuccess, setShowSuccess] = useState(false);
@@ -49,7 +46,7 @@ function ScheduleUpdate() {
   const [squareFeet, setSquareFeet] = useState("");
   const [jobDetails, setJobDetails] = useState("");
   const [numberOfClientEmployees, setNumberOfClientEmployees] = useState("");
-  const [setClient] = useState("");
+  // const [setClient] = useState("");
   const [setEmployees] = useState("");
   const [selectedEmployees, setSelectedEmployees] = useState([]);
   const [oneFieldHasInput, setOneFieldHasInput] = useState(true);
@@ -77,7 +74,7 @@ function ScheduleUpdate() {
   const [formIsDisabled, setFormIsDisabled] = useState(true);
 
   //validation
- 
+
   const [showStreetAddressValidation, setShowStreetAddressValidation] =
     useState(false);
   const [showCityValidation, setShowCityValidation] = useState(false);
@@ -94,9 +91,9 @@ function ScheduleUpdate() {
     showNumberOfClientEmployeesValidation,
     setShowNumberOfClientEmployeesValidation,
   ] = useState(false);
-  
+
   // const [showSelectedEmployeesValidation, setShowSelectedEmployeesValidation] =
-    useState(false);
+  useState(false);
 
   //SECTION GET ALL JOBS
   const {
@@ -115,8 +112,6 @@ function ScheduleUpdate() {
     },
   });
 
- 
-
   //SECTION get a single job
   // eslint-disable-next-line
   const [getASingleSchedule, { loading: lazyLoading, data: singleSchedule }] =
@@ -124,9 +119,7 @@ function ScheduleUpdate() {
       variables: { scheduleId: currentScheduleId },
       // if skip is true, this query will not be executed; in this instance, if the user is not logged in this query will be skipped when the component mounts
       skip: !Auth.loggedIn(),
-      onCompleted: (singleSchedule) => {
-        
-      },
+      onCompleted: (singleSchedule) => {},
     });
 
   //SECTION get clients for dropdown
@@ -164,7 +157,6 @@ function ScheduleUpdate() {
   // SECTION UPDATE SCHEDULE IN DATABASE
   const [updateSchedule] = useMutation(UPDATE_SCHEDULE);
 
-
   //SECTION add new schedule / job to the appropriate employee(s)
   const [updateEmployeeSchedule] = useMutation(UPDATE_EMPLOYEE_SCHEDULE);
   const [removeEmployeeSchedule] = useMutation(REMOVE_EMPLOYEE_SCHEDULE);
@@ -173,7 +165,7 @@ function ScheduleUpdate() {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    console.log(event.target)
+    console.log(event.target);
 
     if (name === "streetAddress") {
       setStreetAddress(value);
@@ -205,8 +197,9 @@ function ScheduleUpdate() {
     } else if (name === "numberOfClientEmployees") {
       setNumberOfClientEmployees(value);
       setSelectNumberOfClientEmployees(false);
-    } else if (name === "client") { //fix
-      setClient(value);
+    // } else if (name === "client") {
+    //   //fix
+    //   setClient(value);
     } else if (name === "employees") {
       setEmployees(value);
     } else {
@@ -248,14 +241,28 @@ function ScheduleUpdate() {
 
     let getSchedule = await getASingleSchedule();
 
-    alert(startDate)
-    alert(startTime)
-    // alert(format_date_string(startDate, startTime ? startTime : "09:00"))
-    alert(format_date_string(startDate ? startDate : format_date_ISOStringNoTime(getSchedule.data.schedule.startDate), startTime ? startTime : format_time_HHmmss(getSchedule.data.schedule.startTime)))
+    alert(startDate);
+    alert(startTime);
+    alert(
+      format_date_string(
+        startDate
+          ? startDate
+          : format_date_ISOStringNoTime(getSchedule.data.schedule.startDate),
+        startTime
+          ? startTime
+          : format_time_HHmmss(getSchedule.data.schedule.startTime)
+      )
+    );
 
-    alert(endDate)
-    // alert(format_date_string(endDate, "09:00"))
-    alert(format_date_string(endDate ? endDate : format_date_ISOStringNoTime(getSchedule.data.schedule.endDate), format_time_HHmmss(getSchedule.data.schedule.endTime)))
+    alert(endDate);
+    alert(
+      format_date_string(
+        endDate
+          ? endDate
+          : format_date_ISOStringNoTime(getSchedule.data.schedule.endDate),
+        format_time_HHmmss(getSchedule.data.schedule.endTime)
+      )
+    );
 
     try {
       await updateSchedule({
@@ -264,12 +271,26 @@ function ScheduleUpdate() {
           streetAddress: streetAddress
             ? streetAddress
             : getSchedule.data.schedule.streetAddress,
-      
+
           city: city ? city : getSchedule.data.schedule.city,
           state: state ? state : getSchedule.data.schedule.state,
           zip: zip ? zip : getSchedule.data.schedule.zip,
-          startDate: format_date_string(startDate ? startDate : format_date_ISOStringNoTime(getSchedule.data.schedule.startDate), startTime ? startTime : format_time_HHmmss(getSchedule.data.schedule.startTime)),
-          endDate: format_date_string(endDate ? endDate : format_date_ISOStringNoTime(getSchedule.data.schedule.endDate), format_time_HHmmss(getSchedule.data.schedule.endTime)),
+          startDate: format_date_string(
+            startDate
+              ? startDate
+              : format_date_ISOStringNoTime(
+                  getSchedule.data.schedule.startDate
+                ),
+            startTime
+              ? startTime
+              : format_time_HHmmss(getSchedule.data.schedule.startTime)
+          ),
+          endDate: format_date_string(
+            endDate
+              ? endDate
+              : format_date_ISOStringNoTime(getSchedule.data.schedule.endDate),
+            format_time_HHmmss(getSchedule.data.schedule.endTime)
+          ),
           startTime: startTime
             ? startTime + ":00 (MST)" //incoming is 09:00 changed to 09:00:00 (MST)
             : `${getSchedule.data.schedule.startTime
@@ -290,7 +311,7 @@ function ScheduleUpdate() {
             ? numberOfClientEmployees
             : getSchedule.data.schedule.numberOfClientEmployees,
           client: getSchedule.data.schedule.client._id,
-         
+
           employees: selectedEmployees.map(({ employeeId }) => employeeId),
         },
       });
@@ -315,7 +336,6 @@ function ScheduleUpdate() {
             schedule: currentScheduleId,
           },
         });
-    
       }
     }
 
@@ -328,7 +348,6 @@ function ScheduleUpdate() {
             schedule: currentScheduleId,
           },
         });
-     
       }
     }
 
@@ -545,7 +564,6 @@ function ScheduleUpdate() {
                 ? `${
                     prevScheduleData?.client.businessName
                   }: ${format_date_MMDDYYYY(prevScheduleData?.startDate)}`
-
                 : "Select"}
             </option>
             {arrayForSortDate.map((job, index) => (
@@ -675,7 +693,6 @@ function ScheduleUpdate() {
                 type="date"
                 min={
                   format_date_YYYYDDMM(prevScheduleData.startDate) <
-
                   new Date().toISOString().split("T")[0]
                     ? format_date_YYYYDDMM(prevScheduleData.startDate)
                     : new Date().toISOString().split("T")[0]
@@ -692,12 +709,14 @@ function ScheduleUpdate() {
               />
             </Form.Group>
           </Col>
-          </Row>
-          <Row className="addy">
+        </Row>
+        <Row className="addy">
           <Col>
             <Form.Group>
               <div className="form-label">
-                <Form.Label style={{ fontWeight: "bolder", marginTop: "-15px" }}>
+                <Form.Label
+                  style={{ fontWeight: "bolder", marginTop: "-15px" }}
+                >
                   End Date
                 </Form.Label>
                 <Form.Label
@@ -729,12 +748,14 @@ function ScheduleUpdate() {
               />
             </Form.Group>
           </Col>
-          </Row>
-          <Row className="addy">
+        </Row>
+        <Row className="addy">
           <Col>
-            <Form.Group >
+            <Form.Group>
               <div className="form-label">
-                <Form.Label style={{ fontWeight: "bolder", marginTop: "-15px" }}>
+                <Form.Label
+                  style={{ fontWeight: "bolder", marginTop: "-15px" }}
+                >
                   Start Time
                 </Form.Label>
                 <Form.Label
@@ -760,7 +781,7 @@ function ScheduleUpdate() {
               />
             </Form.Group>
           </Col>
-          </Row>
+        </Row>
 
         <Row className="addy">
           <Col xs={6}>
