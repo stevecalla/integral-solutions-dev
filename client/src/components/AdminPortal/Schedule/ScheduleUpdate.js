@@ -20,6 +20,7 @@ import {
   format_date_MMDDYYYY,
   format_time_HHmmss,
   format_date_YYYYDDMM,
+  format_date_ISOStringNoTime,
 } from "../../../utils/dateFormat";
 import { STATE_DROPDOWN } from "../../../utils/stateDropdown";
 import MaskedInput from 'react-text-mask';
@@ -247,12 +248,14 @@ function ScheduleUpdate() {
 
     let getSchedule = await getASingleSchedule();
 
-    // alert(startDate)
-    // alert(startTime)
+    alert(startDate)
+    alert(startTime)
     // alert(format_date_string(startDate, startTime ? startTime : "09:00"))
+    alert(format_date_string(startDate ? startDate : format_date_ISOStringNoTime(getSchedule.data.schedule.startDate), startTime ? startTime : format_time_HHmmss(getSchedule.data.schedule.startTime)))
 
-    // alert(endDate)
+    alert(endDate)
     // alert(format_date_string(endDate, "09:00"))
+    alert(format_date_string(endDate ? endDate : format_date_ISOStringNoTime(getSchedule.data.schedule.endDate), format_time_HHmmss(getSchedule.data.schedule.endTime)))
 
     try {
       await updateSchedule({
@@ -265,14 +268,8 @@ function ScheduleUpdate() {
           city: city ? city : getSchedule.data.schedule.city,
           state: state ? state : getSchedule.data.schedule.state,
           zip: zip ? zip : getSchedule.data.schedule.zip,
-          startDate: startDate
-          // ? format_date_string(startDate, startTime ? startTime : "09:00:00 (MST)")
-          ? format_date_string(startDate, startTime ? startTime : "09:00")
-            : getSchedule.data.schedule.startDate,
-          endDate: endDate
-          // ? format_date_string(endDate, "09:00:00 (MST)")
-          ? format_date_string(endDate, "09:00")
-            : getSchedule.data.schedule.endDate,
+          startDate: format_date_string(startDate ? startDate : format_date_ISOStringNoTime(getSchedule.data.schedule.startDate), startTime ? startTime : format_time_HHmmss(getSchedule.data.schedule.startTime)),
+          endDate: format_date_string(endDate ? endDate : format_date_ISOStringNoTime(getSchedule.data.schedule.endDate), format_time_HHmmss(getSchedule.data.schedule.endTime)),
           startTime: startTime
             ? startTime + ":00 (MST)" //incoming is 09:00 changed to 09:00:00 (MST)
             : `${getSchedule.data.schedule.startTime
