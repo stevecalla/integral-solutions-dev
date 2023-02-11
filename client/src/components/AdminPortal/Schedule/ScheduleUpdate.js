@@ -174,7 +174,7 @@ function ScheduleUpdate() {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-  
+    console.log(event.target)
 
     if (name === "streetAddress") {
       setStreetAddress(value);
@@ -206,7 +206,7 @@ function ScheduleUpdate() {
     } else if (name === "numberOfClientEmployees") {
       setNumberOfClientEmployees(value);
       setSelectNumberOfClientEmployees(false);
-    } else if (name === "client") {
+    } else if (name === "client") { //fix
       setClient(value);
     } else if (name === "employees") {
       setEmployees(value);
@@ -466,8 +466,8 @@ function ScheduleUpdate() {
     setSquareFeet("");
     setJobDetails("");
     setNumberOfClientEmployees("");
-    setClient("");
-    setEmployees("");
+    // setClient("");
+    // setEmployees("");
     setSelectedEmployees([]);
   };
 
@@ -534,7 +534,7 @@ function ScheduleUpdate() {
             className="custom-border"
             type="text"
             placeholder="Select Client"
-            value={"form-select"}
+            value={"form-select"}  //fix 
             name={"form-select"}
             onChange={handleSelectedSchedule}
           >
