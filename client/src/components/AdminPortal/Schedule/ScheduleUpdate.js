@@ -263,10 +263,12 @@ function ScheduleUpdate() {
           state: state ? state : getSchedule.data.schedule.state,
           zip: zip ? zip : getSchedule.data.schedule.zip,
           startDate: startDate
-            ? format_date_string(startDate, startTime ? startTime : "09:00:00 (MST)")
+          // ? format_date_string(startDate, startTime ? startTime : "09:00:00 (MST)")
+          ? format_date_string(startDate, startTime ? startTime : "09:00 AM")
             : getSchedule.data.schedule.startDate,
           endDate: endDate
-          ? format_date_string(endDate, "09:00:00 (MST)")
+          // ? format_date_string(endDate, "09:00:00 (MST)")
+          ? format_date_string(endDate, "09:00 AM")
             : getSchedule.data.schedule.endDate,
           startTime: startTime
             ? startTime + ":00 (MST)" //incoming is 09:00 changed to 09:00:00 (MST)
