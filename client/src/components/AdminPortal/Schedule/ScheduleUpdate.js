@@ -249,7 +249,10 @@ function ScheduleUpdate() {
 
     alert(startDate)
     alert(startTime)
-    alert(format_date_string(startDate, startTime ? startTime : "09:00:00 (MST)"))
+    alert(format_date_string(startDate, startTime ? startTime : "09:00"))
+
+    alert(endDate)
+    alert(format_date_string(endDate, "09:00"))
 
     try {
       await updateSchedule({
@@ -264,11 +267,11 @@ function ScheduleUpdate() {
           zip: zip ? zip : getSchedule.data.schedule.zip,
           startDate: startDate
           // ? format_date_string(startDate, startTime ? startTime : "09:00:00 (MST)")
-          ? format_date_string(startDate, startTime ? startTime : "09:00 AM")
+          ? format_date_string(startDate, startTime ? startTime : "09:00")
             : getSchedule.data.schedule.startDate,
           endDate: endDate
           // ? format_date_string(endDate, "09:00:00 (MST)")
-          ? format_date_string(endDate, "09:00 AM")
+          ? format_date_string(endDate, "09:00")
             : getSchedule.data.schedule.endDate,
           startTime: startTime
             ? startTime + ":00 (MST)" //incoming is 09:00 changed to 09:00:00 (MST)
