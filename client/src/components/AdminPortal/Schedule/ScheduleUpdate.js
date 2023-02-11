@@ -47,7 +47,7 @@ function ScheduleUpdate() {
   const [jobDetails, setJobDetails] = useState("");
   const [numberOfClientEmployees, setNumberOfClientEmployees] = useState("");
   // const [setClient] = useState("");
-  const [setEmployees] = useState("");
+  // const [setEmployees] = useState("");
   const [selectedEmployees, setSelectedEmployees] = useState([]);
   const [oneFieldHasInput, setOneFieldHasInput] = useState(true);
 
@@ -198,10 +198,9 @@ function ScheduleUpdate() {
       setNumberOfClientEmployees(value);
       setSelectNumberOfClientEmployees(false);
     // } else if (name === "client") {
-    //   //fix
     //   setClient(value);
-    } else if (name === "employees") {
-      setEmployees(value);
+    // } else if (name === "employees") {
+    //   setEmployees(value);
     } else {
       console.log("Error in form input at EmployeeUpdate.js");
     }
