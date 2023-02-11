@@ -59,8 +59,6 @@ const format_time_HHmmss = (time) => {
     time_HHmmss = time.substring(0, 8);
   }
 
-
-
   return time_HHmmss;
 };
 
@@ -74,10 +72,21 @@ const format_date_ISOString = (date) => {
     date_iso_string = new Date(date).toISOString();
   }
 
-
   return date_iso_string;
 };
 
+const format_date_ISOStringNoTime = (date) => {
+  // FROM: Mon Jan 23 2023 10:55:38 GMT-0700 (Mountain Standard Time)
+  // TO: 2023-01-23
+
+  let date_iso_string_no_time;
+
+  if (date) {
+    date_iso_string_no_time = new Date(date).toISOString().split('T')[0];
+  }
+
+  return date_iso_string_no_time;
+};
 
 module.exports = {
   format_date_string,
@@ -87,6 +96,7 @@ module.exports = {
   format_date_no_hyphen,
   format_time_HHmmss,
   format_date_ISOString,
+  format_date_ISOStringNoTime,
 };
 
 
