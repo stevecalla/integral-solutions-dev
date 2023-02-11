@@ -144,12 +144,182 @@ function ScheduleUpdate() {
   // add new schedule / job to the appropriate employee(s)
   const [updateEmployeeSchedule] = useMutation(UPDATE_EMPLOYEE_SCHEDULE);
 
+<<<<<<< fix-seed
   //SECTION ADD INTO OR REMOVE FROM SELECTED EMPLOYEE FROM PAGE
   // set state of selectedEmployees upon load useEffect
     // populate employee list with employees in list at the time of "select job" dropdown
     useEffect(() => {
       if (currentScheduleId !== "") {
         createCurrentEmployees();
+=======
+  //SECTION HANDLE INPUT
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    console.log(event.target)
+
+    if (name === "streetAddress") {
+      setStreetAddress(value);
+      setSelectStreetAddress(false);
+    } else if (name === "city") {
+      setCity(value);
+      setSelectCity(false);
+    } else if (name === "state") {
+      setState(value);
+      setSelectState(false);
+    } else if (name === "zip") {
+      setZip(value);
+      setSelectZip(false);
+    } else if (name === "startDate") {
+      setStartDate(value);
+      setSelectStartDate(false);
+    } else if (name === "endDate") {
+      setEndDate(value);
+      setSelectEndDate(false);
+    } else if (name === "startTime") {
+      setStartTime(value);
+      setSelectStartTime(false);
+    } else if (name === "squareFeet") {
+      setSquareFeet(value);
+      setSelectSquareFeet(false);
+    } else if (name === "jobDetails") {
+      setJobDetails(value);
+      setSelectJobDetails();
+    } else if (name === "numberOfClientEmployees") {
+      setNumberOfClientEmployees(value);
+      setSelectNumberOfClientEmployees(false);
+    } else if (name === "client") { //fix
+      setClient(value);
+    } else if (name === "employees") {
+      setEmployees(value);
+    } else {
+      console.log("Error in form input at EmployeeUpdate.js");
+    }
+    return name;
+  };
+
+  //SECTION HANDLE SELECTED SCHEDULE/JOB
+  //set the state for the selected schedule dropdown
+  async function handleSelectedSchedule(event) {
+    let scheduleId =
+      event.target.options[event.target.selectedIndex].dataset.id; //get selected schedule id
+    setCurrentScheduleId(scheduleId); //set state of current id
+
+    //await query single client
+    let currentScheduleData = await getASingleSchedule(); //get selected schedule data
+
+    setPrevScheduleData(currentScheduleData.data.schedule);
+
+    console.log('hello');
+    console.log(prevScheduleData);
+
+    // allow form to populate with selected employee data
+    setSelectStreetAddress(true);
+    setSelectCity(true);
+    setSelectState(true);
+    setSelectZip(true);
+    setSelectStartDate(true);
+    setSelectEndDate(true);
+    setSelectStartTime(true);
+    setSelectSquareFeet(true);
+    setSelectNumberOfClientEmployees(true);
+    setSelectJobDetails(true);
+
+    setFormIsDisabled(false); // enable form for input
+  }
+
+  //section
+  const handleScheduleUpdate = async (event) => {
+    event.preventDefault();
+
+    let getSchedule = await getASingleSchedule();
+
+    alert(startDate)
+    alert(startTime)
+    alert(format_date_string(startDate, startTime ? startTime : "09:00"))
+
+    alert(endDate)
+    alert(format_date_string(endDate, "09:00"))
+
+    try {
+      await updateSchedule({
+        variables: {
+          id: currentScheduleId,
+          streetAddress: streetAddress
+            ? streetAddress
+            : getSchedule.data.schedule.streetAddress,
+      
+          city: city ? city : getSchedule.data.schedule.city,
+          state: state ? state : getSchedule.data.schedule.state,
+          zip: zip ? zip : getSchedule.data.schedule.zip,
+          startDate: startDate
+          // ? format_date_string(startDate, startTime ? startTime : "09:00:00 (MST)")
+          ? format_date_string(startDate, startTime ? startTime : "09:00")
+            : getSchedule.data.schedule.startDate,
+          endDate: endDate
+          // ? format_date_string(endDate, "09:00:00 (MST)")
+          ? format_date_string(endDate, "09:00")
+            : getSchedule.data.schedule.endDate,
+          startTime: startTime
+            ? startTime + ":00 (MST)" //incoming is 09:00 changed to 09:00:00 (MST)
+            : `${getSchedule.data.schedule.startTime
+                ?.slice(0, 5)
+                .toString()}:00 (MST)`,
+          endTime: endTime
+            ? endTime
+            : `${getSchedule.data.schedule.endTime
+                ?.slice(0, 5)
+                .toString()}:00 (MST)`,
+          squareFeet: squareFeet
+            ? squareFeet
+            : getSchedule.data.schedule.squareFeet,
+          jobDetails: jobDetails
+            ? jobDetails
+            : getSchedule.data.schedule.jobDetails,
+          numberOfClientEmployees: numberOfClientEmployees
+            ? numberOfClientEmployees
+            : getSchedule.data.schedule.numberOfClientEmployees,
+          client: getSchedule.data.schedule.client._id,
+         
+          employees: selectedEmployees.map(({ employeeId }) => employeeId),
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+
+    //loop to determine adds and deletes
+    //compare revised array with original arrray
+    //SECTION UPDATE EMPLOYEE SCHEDULE ARRAY - ADD OR DELETE
+    //create an array of current employees on the job
+    let currentJobEmployeeIds = prevScheduleData.employees.map(
+      (emp) => emp._id
+    );
+    let selectedJobEmployeeIds = selectedEmployees.map((emp) => emp.employeeId);
+
+    for (let i = 0; i < selectedJobEmployeeIds.length; i++) {
+      if (!currentJobEmployeeIds.includes(selectedJobEmployeeIds[i])) {
+        await updateEmployeeSchedule({
+          variables: {
+            id: selectedJobEmployeeIds[i],
+            schedule: currentScheduleId,
+          },
+        });
+    
+      }
+    }
+
+    //if selected employee ids does not include an id in the original array/database, remove it from the database
+    for (let i = 0; i < currentJobEmployeeIds.length; i++) {
+      if (!selectedJobEmployeeIds.includes(currentJobEmployeeIds[i])) {
+        await removeEmployeeSchedule({
+          variables: {
+            id: currentJobEmployeeIds[i],
+            schedule: currentScheduleId,
+          },
+        });
+     
+>>>>>>> local
       }
   
       // eslint-disable-next-line
@@ -750,9 +920,16 @@ function ScheduleUpdate() {
                 className="custom-border"
                 type="time"
                 name="startTime"
+<<<<<<< fix-seed
                 defaultValue={
                   prevScheduleData &&
                   prevScheduleData?.startTime?.slice(0, 5).toString()
+=======
+                value={
+                  selectStartTime
+                    ? format_time_HHmmss(prevScheduleData.startTime) //fix
+                    : startTime
+>>>>>>> local
                 }
                 // defaultValue="13:30"
                 onChange={handleInputChange}

@@ -50,8 +50,39 @@ const format_date_YYYYDDMM = (date) => {
     dateYYYYDDMM = new Date(date).toLocaleDateString("en-CA").toString();
   }
 
+<<<<<<< fix-seed
   // console.log(new Date(date).toDateString());
   // console.log(dateYYYYDDMM);
+=======
+  return dateYYYYDDMM;
+};
+
+const format_time_HHmmss = (time) => {
+  // FROM: "08:00:00 (MST)"
+  // TO: "HH:mm:ss"
+
+  let time_HHmmss;
+
+  if (time) {
+    time_HHmmss = time.substring(0, 8);
+  }
+
+  console.log(time);
+  console.log(time_HHmmss);
+
+  return time_HHmmss;
+};
+
+const format_date_ISOString = (date) => {
+  // FROM: Mon Jan 23 2023 10:55:38 GMT-0700 (Mountain Standard Time)
+  // TO: 2023-01-23T17:55:38.020Z
+
+  let date_iso_string;
+
+  if (date) {
+    date_iso_string = new Date(date).toISOString();
+  }
+>>>>>>> local
 
   return dateYYYYDDMM;
 
