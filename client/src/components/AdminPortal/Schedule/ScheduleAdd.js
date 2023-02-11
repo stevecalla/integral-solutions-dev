@@ -178,6 +178,10 @@ function ScheduleAdd() {
     let reformattedStartDate = format_date_string(startDate, startTime);
     let reformattedEndDate = format_date_string(endDate, startTime); //used start time since endTime is no on the form
 
+    alert(startDate)
+    alert(startTime)
+    alert(format_date_string(startDate, startTime ? startTime : "09:00:00 (MST)"))
+
     try {
       // eslint-disable-next-line
       const { data } = await addSchedule({

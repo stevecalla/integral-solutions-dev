@@ -247,6 +247,10 @@ function ScheduleUpdate() {
 
     let getSchedule = await getASingleSchedule();
 
+    alert(startDate)
+    alert(startTime)
+    alert(format_date_string(startDate, startTime ? startTime : "09:00:00 (MST)"))
+
     try {
       await updateSchedule({
         variables: {
