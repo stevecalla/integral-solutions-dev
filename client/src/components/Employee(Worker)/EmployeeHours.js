@@ -484,7 +484,7 @@ function EmployeeHours() {
     let lastWeeklyHours = 0;
     for (let i = 0; i < singleHours.hoursByEmployeeId.length; i++) {
       let jobb = singleHours.hoursByEmployeeId[i].jobDate;
-
+      let hoursInt = Number(singleHours.hoursByEmployeeId[i].hoursWorked);
       if (
         jobb === lastWeekDates[0] ||
         jobb === lastWeekDates[1] ||
@@ -494,12 +494,14 @@ function EmployeeHours() {
         jobb === lastWeekDates[5] ||
         jobb === lastWeekDates[6]
       ) {
-        let hoursInt = Number(singleHours.hoursByEmployeeId[i].hoursWorked);
-        lastWeeklyHours = hoursInt + lastWeeklyHours;
-
-        setLastWeekHours(lastWeeklyHours.toFixed(2));
+        // let hoursInt = Number(singleHours.hoursByEmployeeId[i].hoursWorked);
+        // lastWeeklyHours = hoursInt + lastWeeklyHours;
+        // setLastWeekHours(lastWeeklyHours.toFixed(2));
       }
+      lastWeeklyHours = hoursInt;
     }
+      // console.log(lastWeeklyHours + ":00", "lastWeeklyHours")
+      setLastWeekHours(parseFloat(lastWeeklyHours.toFixed(2)));
   };
 
   //Get dates and hours for last week to render in last week section
@@ -662,7 +664,7 @@ function EmployeeHours() {
                         textAlign: "center",
                       }}
                     >
-                      Hours Last Week: {parseFloat(lastWeekHours).toFixed(2)}
+                      Hours Last Week: {parseFloat(lastWeekHours ? lastWeekHours : "0").toFixed(2)}
                     </div>
                     {lastWeekDays?.map((days, index) => (
                       <div
