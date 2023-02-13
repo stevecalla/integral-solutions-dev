@@ -253,18 +253,18 @@ function ContactForm() {
   useEffect(() => {
     setAreAllFieldsFilled(
       companyName.trim() !== "" &&
-        contactName.trim() !== "" &&
-        phone.trim() !== "" &&
-        email.trim() !== "" &&
-        address.trim() !== "" &&
-        city.trim() !== "" &&
-        state.trim() !== "" &&
-        zip.trim() !== "" &&
-        squareFeet.trim() !== "" &&
-        employeeNumber.trim() !== "" &&
-        startDate.trim() !== "" &&
-        jobDetails.trim() !== "" &&
-        services.length > 0
+      contactName.trim() !== "" &&
+      phone.trim() !== "" &&
+      email.trim() !== "" &&
+      address.trim() !== "" &&
+      city.trim() !== "" &&
+      state.trim() !== "" &&
+      zip.trim() !== "" &&
+      squareFeet.trim() !== "" &&
+      employeeNumber.trim() !== "" &&
+      startDate.trim() !== "" &&
+      jobDetails.trim() !== "" &&
+      services.length > 0
     );
   }, [
     companyName,
@@ -312,9 +312,8 @@ function ContactForm() {
                   Company Name
                 </Form.Label>
                 <Form.Label
-                  className={`text-danger ${
-                    showCompanyNameValidation ? "show" : "hide"
-                  }`}
+                  className={`text-danger ${showCompanyNameValidation ? "show" : "hide"
+                    }`}
                 >
                   * field is required
                 </Form.Label>
@@ -337,9 +336,8 @@ function ContactForm() {
                   Contact Name
                 </Form.Label>
                 <Form.Label
-                  className={`text-danger ${
-                    showContactNameValidation ? "show" : "hide"
-                  }`}
+                  className={`text-danger ${showContactNameValidation ? "show" : "hide"
+                    }`}
                 >
                   * field is required
                 </Form.Label>
@@ -363,9 +361,8 @@ function ContactForm() {
                   Email Address
                 </Form.Label>
                 <Form.Label
-                  className={`text-danger ${
-                    showEmailValidation ? "show" : "hide"
-                  }`}
+                  className={`text-danger ${showEmailValidation ? "show" : "hide"
+                    }`}
                 >
                   * field is required
                 </Form.Label>
@@ -388,9 +385,8 @@ function ContactForm() {
                   Phone Number
                 </Form.Label>
                 <Form.Label
-                  className={`text-danger ${
-                    showphoneValidation ? "show" : "hide"
-                  }`}
+                  className={`text-danger ${showphoneValidation ? "show" : "hide"
+                    }`}
                 >
                   * field is required
                 </Form.Label>
@@ -428,9 +424,8 @@ function ContactForm() {
                   Address
                 </Form.Label>
                 <Form.Label
-                  className={`text-danger ${
-                    showAddressValidation ? "show" : "hide"
-                  }`}
+                  className={`text-danger ${showAddressValidation ? "show" : "hide"
+                    }`}
                 >
                   * field is required
                 </Form.Label>
@@ -452,9 +447,8 @@ function ContactForm() {
               <Col sm={12} md={5}>
                 <Form.Label style={{ fontWeight: "bolder" }}>City</Form.Label>
                 <Form.Label
-                  className={`text-danger ${
-                    showCityValidation ? "show" : "hide"
-                  }`}
+                  className={`text-danger ${showCityValidation ? "show" : "hide"
+                    }`}
                 >
                   * field is required
                 </Form.Label>
@@ -469,11 +463,14 @@ function ContactForm() {
               </Col>
 
               <Col style={{ marginRight: "auto", marginLeft: "auto" }}>
-                <Form.Label className="state-contact" style={{ fontWeight: "bolder" }}>State</Form.Label>
                 <Form.Label
-                  className={`text-danger ${
-                    showStateValidation ? "show" : "hide"
-                  }`}
+                  className="state-contact"
+                  style={{ fontWeight: "bolder" }}>
+                  State
+                </Form.Label>
+                <Form.Label
+                  className={`text-danger ${showStateValidation ? "show" : "hide"
+                    }`}
                 >
                   * field is required
                 </Form.Label>
@@ -494,13 +491,14 @@ function ContactForm() {
                 </Form.Control>
               </Col>
               <Col>
-                <Form.Label className="zipcode-contact" style={{ fontWeight: "bolder", align: "right" }}>
+                <Form.Label
+                  className="zipcode-contact"
+                  style={{ fontWeight: "bolder", align: "right" }}>
                   Zipcode
                 </Form.Label>
                 <Form.Label
-                  className={`text-danger ${
-                    showZipValidation ? "show" : "hide"
-                  }`}
+                  className={`text-danger ${showZipValidation ? "show" : "hide"
+                    }`}
                 >
                   * field is required
                 </Form.Label>
@@ -524,9 +522,8 @@ function ContactForm() {
                   Office Sqft
                 </Form.Label>
                 <Form.Label
-                  className={`text-danger ${
-                    showSquareFeetValidation ? "show" : "hide"
-                  }`}
+                  className={`text-danger ${showSquareFeetValidation ? "show" : "hide"
+                    }`}
                 >
                   * field is required
                 </Form.Label>
@@ -551,9 +548,8 @@ function ContactForm() {
                   Staff Size
                 </Form.Label>
                 <Form.Label
-                  className={`text-danger ${
-                    showEmployeeNumberValidation ? "show" : "hide"
-                  }`}
+                  className={`text-danger ${showEmployeeNumberValidation ? "show" : "hide"
+                    }`}
                 >
                   * field is required
                 </Form.Label>
@@ -583,9 +579,8 @@ function ContactForm() {
                   Requested Completion Date
                 </Form.Label>
                 <Form.Label
-                  className={`text-danger ${
-                    showStartDateValidation ? "show" : "hide"
-                  }`}
+                  className={`text-danger ${showStartDateValidation ? "show" : "hide"
+                    }`}
                 >
                   * field is required
                 </Form.Label>
@@ -688,9 +683,8 @@ function ContactForm() {
                   Job Details
                 </Form.Label>
                 <Form.Label
-                  className={`text-danger ${
-                    showJobDetailsValidation ? "show" : "hide"
-                  }`}
+                  className={`text-danger ${showJobDetailsValidation ? "show" : "hide"
+                    }`}
                 >
                   * field is required
                 </Form.Label>
