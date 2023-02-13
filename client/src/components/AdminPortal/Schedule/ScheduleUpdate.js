@@ -252,26 +252,23 @@ function ScheduleUpdate() {
     // )}
     // `);
 
-    // alert(`end date input= ${endDate}`);
-    // alert(`end date stored = ${getSchedule.data.schedule.endDate}`);
-    // alert(`end time stored = ${getSchedule.data.schedule.endTime}`);
-    // alert(
-    //   `end time format = ${format_time_HHmmss(
-    //     getSchedule.data.schedule.endTime
-    //   )}`
-    // );
-    // alert(`end date/time calc = ', ${format_date_string(
-    //   endDate
-    //     ? endDate
-    //     : format_date_ISOStringNoTime(getSchedule.data.schedule.endDate),
-    //   //if there is an endtime in the db, use it; different than startDate b/c there is no input option for endTime
-    //   // getSchedule.data.schedule.endTime
-    //   //   ? format_time_HHmmss(getSchedule.data.schedule.endTime)
-    //   //   : "09:00" //otherwise default to "09:00"
-
-    //   endTime ? endTime : format_time_HHmmss(getSchedule.data.schedule.endTime)
-    // )}
-    // `);
+    alert(`end date input= ${endDate}`);
+    alert(`end date stored = ${getSchedule.data.schedule.endDate}`);
+    alert(`end time stored = ${getSchedule.data.schedule.endTime}`);
+    alert(
+      `end time format = ${format_date_string(
+            endDate
+            ? endDate
+            : format_date_ISOStringNoTime(
+                getSchedule.data.schedule.endDate
+              ),
+              
+          getSchedule.data.schedule.endTime ? 
+            format_time_HHmmss(getSchedule.data.schedule.endTime)
+            : startTime
+            
+        )}
+    `);
 
     try {
       await updateSchedule({
@@ -315,7 +312,7 @@ function ScheduleUpdate() {
                 ?.slice(0, 5)
                 .toString()}:00 (MST)`,
           endTime: endTime
-            ? endTime
+            ? endTime + ":00 (MST)" //incoming is 09:00 changed to 09:00:00 (MST)
             : `${getSchedule.data.schedule.endTime
                 ?.slice(0, 5)
                 .toString()}:00 (MST)`,
