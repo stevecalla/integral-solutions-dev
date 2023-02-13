@@ -56,6 +56,14 @@
     "employee": "6398fb54494aa98f85992da3"
   },
   {
+    "_id": "363233343536373839303139",
+    "jobDate": "February 10 2023",
+    "startTime": "09:00:00 (MST)",
+    "endTime": "10:00:00 (MST)",
+    "hoursWorked": "4.0",
+    "employee": "6398fb54494aa98f85992da3"
+  },
+  {
     "_id": "333233343536373839303139",
     "jobDate": "February 5 2023",
     "startTime": "09:00:00 (MST)",

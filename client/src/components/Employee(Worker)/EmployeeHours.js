@@ -333,10 +333,12 @@ function EmployeeHours() {
       ?.filter((week) => moment(week.jobDate).week() === lastWeekNumber) //filter for dates last week
       .map((element) => {
         return {
+          weekDay: moment(element.jobDate).day(),
           jobDate: format_date_no_hyphen(element.jobDate),
           hours: parseFloat(element.hoursWorked, 2),
         };
-      });
+      })
+      .sort((a, b) => a.weekDay - b.weekDay);
 
     let hoursForLastWeek = currentEmployee
       ?.filter((year) => moment(year.jobDate).year() === currentYear) //filter for dates this year
@@ -359,7 +361,7 @@ function EmployeeHours() {
   //get and format data for current week to render on page
   //convert data from DB into renderable object
   useEffect(() => {
-    //get singleHours, filter for this week, sort by date
+    //get singleHours, filter for this week
 
     let currentWeekNumber = moment(new Date()).week();
     let currentYear = moment(new Date()).year();
