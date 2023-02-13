@@ -25,13 +25,16 @@ const format_date_MMDDYYYY = (date) => {
 };
 const format_date_MMDD = (date) => {
   // FROM: "November 29 2022 09:00:00 (MST)"
-  // TO: "Wedneday Jan 11"
+  // TO: "Wedneday, Jan 11"
 
-  const dateMMDD = moment(date).format("dddd, MMM DD");
+  const dateMMDD = moment(date).format("dddd, MMM DD YYYY");
 
   return dateMMDD;
 };
+
 const format_date_no_hyphen = (date) => {
+  // to: Sunday, Feb 05 2023
+
   const newDate = moment(date).format("dddd, MMM DD YYYY");
   return newDate;
 };
