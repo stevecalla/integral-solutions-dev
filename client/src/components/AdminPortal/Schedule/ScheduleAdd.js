@@ -444,7 +444,7 @@ function ScheduleAdd() {
           </Form.Control>
         </Form.Group>
 
-        <Form.Group className="mb-3 form-length" controlId="formBasicEmail">
+        <Form.Group className="mb-3 form-length">
           <div className="form-label">
             <Form.Label style={{ fontWeight: "bolder" }}>Address</Form.Label>
             <Form.Label
@@ -532,7 +532,7 @@ function ScheduleAdd() {
         </Row>
         <Row className="addy">
           <Col>
-            <Form.Group  controlId="formBasicEmail">
+            <Form.Group>
               <div className="form-label">
                 <Form.Label style={{ fontWeight: "bolder" }}>
                   Start Date
@@ -560,7 +560,7 @@ function ScheduleAdd() {
           </Row>
           <Row className="addy">
           <Col>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group>
               <div className="form-label">
                 <Form.Label style={{ fontWeight: "bolder", marginTop: "-15px" }}>
                   End Date
@@ -590,7 +590,7 @@ function ScheduleAdd() {
           <Row className="addy">
           <Col>
             <Form.Group >
-              <div className="form-label" controlId="formBasicEmail">
+              <div className="form-label">
                 <Form.Label style={{ fontWeight: "bolder", marginTop: "-15px" }}>
                   Start Time
                 </Form.Label>
@@ -714,7 +714,7 @@ function ScheduleAdd() {
           ))}
         </Form.Group>
         
-        <Form.Group className="form-length mb-3" controlId="formBasicMessage">
+        <Form.Group className="form-length mb-3">
           <div className="form-label">
             <Form.Label style={{ fontWeight: "bolder" }}>
               Job Details
