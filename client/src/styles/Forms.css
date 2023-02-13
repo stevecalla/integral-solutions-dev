@@ -48,6 +48,14 @@
     margin-top: 15px;
     width: 100%;
   }
+  .zipcode-contact {
+    margin-top: 15px;
+    width: 100%;
+  }
+  .state-contact {
+    margin-top: 15px;
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 375px) and (max-width: 389px) {
