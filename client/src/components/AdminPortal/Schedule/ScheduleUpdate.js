@@ -197,10 +197,10 @@ function ScheduleUpdate() {
     } else if (name === "numberOfClientEmployees") {
       setNumberOfClientEmployees(value);
       setSelectNumberOfClientEmployees(false);
-    // } else if (name === "client") {
-    //   setClient(value);
-    // } else if (name === "employees") {
-    //   setEmployees(value);
+      // } else if (name === "client") {
+      //   setClient(value);
+      // } else if (name === "employees") {
+      //   setEmployees(value);
     } else {
       console.log("Error in form input at EmployeeUpdate.js");
     }
@@ -240,27 +240,32 @@ function ScheduleUpdate() {
 
     let getSchedule = await getASingleSchedule();
 
-    alert(startDate);
-    alert(startTime);
-    alert(
-      format_date_string(
-        startDate
-          ? startDate
-          : format_date_ISOStringNoTime(getSchedule.data.schedule.startDate),
-        startTime
-          ? startTime
-          : format_time_HHmmss(getSchedule.data.schedule.startTime)
-      )
-    );
+    // alert(`input start date = ${startDate}`);
+    // alert(`input start time = ${startTime}`);
+    // alert(`calc start date/time = ${format_date_string(
+    //   startDate
+    //     ? startDate
+    //     : format_date_ISOStringNoTime(getSchedule.data.schedule.startDate),
+    //   startTime
+    //     ? startTime
+    //     : format_time_HHmmss(getSchedule.data.schedule.startTime)
+    // )}
+    // `);
 
-    alert(endDate);
+    alert(`end date input= ${endDate}`);
+    alert(`end date stored = ${getSchedule.data.schedule.endDate}`);
+    alert(`end time stored = ${getSchedule.data.schedule.endTime}`);
     alert(
-      format_date_string(
+      `end time format = ${format_date_string(
         endDate
           ? endDate
           : format_date_ISOStringNoTime(getSchedule.data.schedule.endDate),
-        format_time_HHmmss(getSchedule.data.schedule.endTime)
-      )
+
+        getSchedule.data.schedule.endTime
+          ? format_time_HHmmss(getSchedule.data.schedule.endTime)
+          : startTime
+      )}
+    `
     );
 
     try {
@@ -288,7 +293,10 @@ function ScheduleUpdate() {
             endDate
               ? endDate
               : format_date_ISOStringNoTime(getSchedule.data.schedule.endDate),
-            format_time_HHmmss(getSchedule.data.schedule.endTime)
+            //since endTime is not an input field always make equal to startTime
+            startTime
+              ? startTime
+              : format_time_HHmmss(getSchedule.data.schedule.startTime)
           ),
           startTime: startTime
             ? startTime + ":00 (MST)" //incoming is 09:00 changed to 09:00:00 (MST)
@@ -296,7 +304,7 @@ function ScheduleUpdate() {
                 ?.slice(0, 5)
                 .toString()}:00 (MST)`,
           endTime: endTime
-            ? endTime
+            ? endTime + ":00 (MST)" //incoming is 09:00 changed to 09:00:00 (MST)
             : `${getSchedule.data.schedule.endTime
                 ?.slice(0, 5)
                 .toString()}:00 (MST)`,

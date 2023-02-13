@@ -3,9 +3,9 @@ const moment = require("moment");
 const format_date_string = (date, time) => {
   // FROM: "01/19/2023" & Time similar to "09:00"
   // TO: January 29 2023 09:00:00 (MST)
-
+  
   const dateAndTime = date + " " + time;
-  const tempdate = moment(dateAndTime).format("MMMM DD YYYY hh:mm:ss");
+  const tempdate = moment(dateAndTime).format("MMMM DD YYYY HH:mm:ss");
   const stringDateFormat = tempdate + " (MST)";
 
   return stringDateFormat;
@@ -59,6 +59,9 @@ const format_time_HHmmss = (time) => {
     time_HHmmss = time.substring(0, 8);
   }
 
+  // alert(`time = ${time}`)
+  // alert(`time conv = ${time_HHmmss}`)
+
   return time_HHmmss;
 };
 
@@ -78,6 +81,9 @@ const format_date_ISOString = (date) => {
 const format_date_ISOStringNoTime = (date) => {
   // FROM: Mon Jan 23 2023 10:55:38 GMT-0700 (Mountain Standard Time)
   // TO: 2023-01-23
+
+  console.log(date);
+  alert(`format date = ${date}`);
 
   let date_iso_string_no_time;
 
