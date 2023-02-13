@@ -147,17 +147,17 @@ function ScheduleAdd() {
       ? setEndDate(value)
       : name === "startTime"
       ? setStartTime(value)
-      // : name === "endTime"
+      : // : name === "endTime"
       // ? setEndTime(value)
-      : name === "squareFeet"
+      name === "squareFeet"
       ? setSquareFeet(value)
       : name === "jobDetails"
       ? setJobDetails(value)
       : name === "numberOfClientEmployees"
       ? setNumberOfClientEmployees(value)
-      // : name === "client"
+      : // : name === "client"
       // ? setClient(value)
-      : name === "streetAddress"
+      name === "streetAddress"
       ? setStreetAddress(value)
       : name === "state"
       ? setState(value)
@@ -201,7 +201,6 @@ function ScheduleAdd() {
           employees: selectedEmployees.map(({ employeeId }) => employeeId),
         },
       });
-
     } catch (err) {
       console.error(err);
     }
@@ -214,10 +213,8 @@ function ScheduleAdd() {
 
   //section update client array of jobs/schedule
   useEffect(() => {
-
     try {
       if (mostRecentScheduleAddId && selectedBusinessName) {
-        
         updateClientSchedule({
           variables: {
             id: clients?.clients
@@ -484,7 +481,9 @@ function ScheduleAdd() {
             />
           </Col>
           <Col xs={5}>
-            <Form.Label style={{ fontWeight: "bolder", marginTop: "15px" }}>State</Form.Label>
+            <Form.Label style={{ fontWeight: "bolder", marginTop: "15px" }}>
+              State
+            </Form.Label>
             <Form.Label
               className={`validation-color ${
                 showStateValidation ? "show" : "hide"
@@ -508,7 +507,9 @@ function ScheduleAdd() {
             </Form.Control>
           </Col>
           <Col>
-            <Form.Label style={{ fontWeight: "bolder", marginTop: "15px" }}>Zipcode</Form.Label>
+            <Form.Label style={{ fontWeight: "bolder", marginTop: "15px" }}>
+              Zipcode
+            </Form.Label>
             <Form.Label
               className={`validation-color ${
                 showZipValidation ? "show" : "hide"
@@ -557,12 +558,14 @@ function ScheduleAdd() {
               />
             </Form.Group>
           </Col>
-          </Row>
-          <Row className="addy">
+        </Row>
+        <Row className="addy">
           <Col>
             <Form.Group>
               <div className="form-label">
-                <Form.Label style={{ fontWeight: "bolder", marginTop: "-15px" }}>
+                <Form.Label
+                  style={{ fontWeight: "bolder", marginTop: "-15px" }}
+                >
                   End Date
                 </Form.Label>
                 <Form.Label
@@ -586,12 +589,14 @@ function ScheduleAdd() {
               />
             </Form.Group>
           </Col>
-          </Row>
-          <Row className="addy">
+        </Row>
+        <Row className="addy">
           <Col>
-            <Form.Group >
+            <Form.Group>
               <div className="form-label">
-                <Form.Label style={{ fontWeight: "bolder", marginTop: "-15px" }}>
+                <Form.Label
+                  style={{ fontWeight: "bolder", marginTop: "-15px" }}
+                >
                   Start Time
                 </Form.Label>
                 <Form.Label
@@ -713,7 +718,7 @@ function ScheduleAdd() {
             </Button>
           ))}
         </Form.Group>
-        
+
         <Form.Group className="form-length mb-3">
           <div className="form-label">
             <Form.Label style={{ fontWeight: "bolder" }}>

@@ -257,18 +257,16 @@ function ScheduleUpdate() {
     alert(`end time stored = ${getSchedule.data.schedule.endTime}`);
     alert(
       `end time format = ${format_date_string(
-            endDate
-            ? endDate
-            : format_date_ISOStringNoTime(
-                getSchedule.data.schedule.endDate
-              ),
-              
-          getSchedule.data.schedule.endTime ? 
-            format_time_HHmmss(getSchedule.data.schedule.endTime)
-            : startTime
-            
-        )}
-    `);
+        endDate
+          ? endDate
+          : format_date_ISOStringNoTime(getSchedule.data.schedule.endDate),
+
+        getSchedule.data.schedule.endTime
+          ? format_time_HHmmss(getSchedule.data.schedule.endTime)
+          : startTime
+      )}
+    `
+    );
 
     try {
       await updateSchedule({
@@ -281,7 +279,6 @@ function ScheduleUpdate() {
           city: city ? city : getSchedule.data.schedule.city,
           state: state ? state : getSchedule.data.schedule.state,
           zip: zip ? zip : getSchedule.data.schedule.zip,
-
           startDate: format_date_string(
             startDate
               ? startDate
@@ -292,20 +289,15 @@ function ScheduleUpdate() {
               ? startTime
               : format_time_HHmmss(getSchedule.data.schedule.startTime)
           ),
-
           endDate: format_date_string(
             endDate
               ? endDate
-              : format_date_ISOStringNoTime(
-                  getSchedule.data.schedule.endDate
-                ),
-                
-            getSchedule.data.schedule.endTime ? 
-              format_time_HHmmss(getSchedule.data.schedule.endTime)
-              : startTime
-              
+              : format_date_ISOStringNoTime(getSchedule.data.schedule.endDate),
+            //since endTime is not an input field always make equal to startTime
+            startTime
+              ? startTime
+              : format_time_HHmmss(getSchedule.data.schedule.startTime)
           ),
-
           startTime: startTime
             ? startTime + ":00 (MST)" //incoming is 09:00 changed to 09:00:00 (MST)
             : `${getSchedule.data.schedule.startTime
