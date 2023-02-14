@@ -353,6 +353,7 @@ function EmployeeHours() {
 
     console.log(daysHoursForLastWeek);
     console.log(hoursForLastWeek);
+    
 
     setLastWeekHours(parseFloat(calcHoursForLastWeek).toFixed(2));
     setLastWeekDays(daysHoursForLastWeek);

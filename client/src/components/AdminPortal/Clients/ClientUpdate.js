@@ -252,14 +252,14 @@ function ClientUpdate() {
   useEffect(() => {
     setOneFieldHasInput(
       businessName.trim() !== "" ||
-        contact.trim() !== "" ||
-        phone.trim() !== "" ||
-        email.trim() !== "" ||
-        streetAddress.trim() !== "" ||
-        suite.trim() !== "" || //not required
-        city.trim() !== "" ||
-        state.trim() !== "" ||
-        zip.trim() !== ""
+      contact.trim() !== "" ||
+      phone.trim() !== "" ||
+      email.trim() !== "" ||
+      streetAddress.trim() !== "" ||
+      suite.trim() !== "" || //not required
+      city.trim() !== "" ||
+      state.trim() !== "" ||
+      zip.trim() !== ""
     );
     // eslint-disable-next-line
   }, [
@@ -323,9 +323,8 @@ function ClientUpdate() {
                 Company Name
               </Form.Label>
               <Form.Label
-                className={`validation-color ${
-                  showBusinessNameValidation ? "show" : "hide"
-                }`}
+                className={`validation-color ${showBusinessNameValidation ? "show" : "hide"
+                  }`}
               >
                 * field is required
               </Form.Label>
@@ -350,9 +349,8 @@ function ClientUpdate() {
                 Contact Name
               </Form.Label>
               <Form.Label
-                className={`validation-color ${
-                  showContactValidation ? "show" : "hide"
-                }`}
+                className={`validation-color ${showContactValidation ? "show" : "hide"
+                  }`}
               >
                 * field is required
               </Form.Label>
@@ -375,9 +373,8 @@ function ClientUpdate() {
                 Phone Number
               </Form.Label>
               <Form.Label
-                className={`validation-color ${
-                  showPhoneValidation ? "show" : "hide"
-                }`}
+                className={`validation-color ${showPhoneValidation ? "show" : "hide"
+                  }`}
               >
                 * field is required
               </Form.Label>
@@ -414,9 +411,8 @@ function ClientUpdate() {
             <div className="form-label">
               <Form.Label style={{ fontWeight: "bolder" }}>Email</Form.Label>
               <Form.Label
-                className={`validation-color ${
-                  showEmailValidation ? "show" : "hide"
-                }`}
+                className={`validation-color ${showEmailValidation ? "show" : "hide"
+                  }`}
               >
                 * field is required
               </Form.Label>
@@ -439,9 +435,8 @@ function ClientUpdate() {
             <div className="form-label">
               <Form.Label style={{ fontWeight: "bolder" }}>Address</Form.Label>
               <Form.Label
-                className={`validation-color ${
-                  showStreetAddressValidation ? "show" : "hide"
-                }`}
+                className={`validation-color ${showStreetAddressValidation ? "show" : "hide"
+                  }`}
               >
                 * field is required
               </Form.Label>
@@ -480,9 +475,8 @@ function ClientUpdate() {
             <Col xs={6}>
               <Form.Label style={{ fontWeight: "bolder" }}>City</Form.Label>
               <Form.Label
-                className={`validation-color ${
-                  showCityValidation ? "show" : "hide"
-                }`}
+                className={`validation-color ${showCityValidation ? "show" : "hide"
+                  }`}
               >
                 * required
               </Form.Label>
@@ -499,9 +493,8 @@ function ClientUpdate() {
             <Col>
               <Form.Label style={{ fontWeight: "bolder" }}>State</Form.Label>
               <Form.Label
-                className={`validation-color ${
-                  showStateValidation ? "show" : "hide"
-                }`}
+                className={`validation-color ${showStateValidation ? "show" : "hide"
+                  }`}
               >
                 * required
               </Form.Label>
@@ -524,11 +517,14 @@ function ClientUpdate() {
               </Form.Control>
             </Col>
             <Col>
-              <Form.Label className="zipcode" style={{ fontWeight: "bolder", marginTop: "15px" }}>Zipcode</Form.Label>
               <Form.Label
-                className={`validation-color ${
-                  showZipValidation ? "show" : "hide"
-                }`}
+                className="zipcode-clientUpdate"
+                style={{ fontWeight: "bolder" }}>
+                Zipcode
+              </Form.Label>
+              <Form.Label
+                className={`validation-color ${showZipValidation ? "show" : "hide"
+                  }`}
               >
                 * required
               </Form.Label>
